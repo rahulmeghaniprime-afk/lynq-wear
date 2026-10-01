@@ -1,27 +1,62 @@
+{% style %}
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        --swiper-pagination-color: rgb(var(--color-background));
+        width: 20px;
+        background-color: #ffffff;
+        opacity: 1;
+    }
+    .swiper-pagination-bullet {
+        width: 5px;
+        height: 2.5px;
+        border-radius: 0;
+        background-color: #ffffff;
+        opacity: 0.8;
+        transition: width 0.3s ease-in-out;
+    }
+    .swiper-pagination {
+        --swiper-pagination-bottom: 25px;
+    }
+{% endstyle %}
 <div class="wrapper-{{ section.id }}">
-    <div class="slide_show">
+    <div class="slide_show" style="--header-height:85px">
         <div class="slide_show_wrapper">
-            <div class="swiper">
+            <div
+                class="swiper"
+                data-slider="true"
+                data-slider-id="slider-{{section.id}}"
+                data-loop="{{section.settings.loop}}"
+                data-pagination="{{section.settings.pagination}}"
+                data-navigation="{{section.settings.navigation}}"
+                data-scrollbar="{{section.settings.scrollbar}}"
+                data-autoplay="{{section.settings.autoplay}}"
+            >
                 <div class="swiper-wrapper">
                     {% for block in section.blocks %}
                         {% if block.settings.image != blank %}
+                            {% assign first_slide = forloop.first %}
+                            {% if first_slide %}
+                                {% assign loading = 'eager' %}
+                                {% assign fetchpriority = 'high' %}
+                            {% else %}
+                                {% assign loading = 'lazy' %}
+                                {% assign fetchpriority = 'auto' %}
+                            {% endif %}
                             <div class="swiper-slide">
-                                {{
-                                    block.settings.image
-                                    | image_url: width: 2880
-                                    | image_tag:
-                                        widths: '480, 765, 900, 1000, 1200, 1500, 2000, 2880',
-                                        sizes: '100vw',
-                                        class: 'blur-up img-fluid',
-                                        loading: forloop.first
-                                    | default: false
-                                    | ternary: 'eager',
-                                        'lazy',
-                                        fetchpriority: forloop.first
-                                    | default: false
-                                    | ternary: 'high', 'auto', alt: img.alt
-                                    | escape
-                                }}
+                                <div class="image_slide_wrapper">
+                                    <div class="image_slide">
+                                        {{
+                                            block.settings.image
+                                            | image_url: width: 2880
+                                            | image_tag:
+                                                widths: '480, 765, 900, 1000, 1200, 1500, 2000, 2880',
+                                                sizes: '100vw',
+                                                class: 'blur-up img-fluid',
+                                                loading: loading,
+                                                fetchpriority: fetchpriority
+                                            | escape
+                                        }}
+                                    </div>
+                                </div>
                             </div>
                         {% else %}
                             <div class="swiper-slide">
@@ -30,41 +65,59 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-scrollbar"></div>
+                {% if section.settings.pagination %}
+                    <div class="swiper-pagination"></div>
+                {% endif %}
+                {% if section.settings.navigation %}
+                    <div class="swiper-button-prev">
+                        {{ 'icon-previous.svg' | inline_asset_content }}
+                    </div>
+                    <div class="swiper-button-next">
+                        {{ 'icon-next.svg' | inline_asset_content }}
+                    </div>
+                {% endif %}
+                {% if section.settings.scrollbar %}
+                    <div class="swiper-scrollbar"></div>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
-<script defer="defer">
-    const swiper = new Swiper('.wrapper-{{ section.id }} .swiper', {
-        // Optional parameters
-        direction: 'vertical',
-        loop: true,
-
-        // If we need pagination
-        pagination: {
-            el: '.wrapper-{{ section.id }} .swiper-pagination',
-        },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.wrapper-{{ section.id }} .swiper-button-next',
-            prevEl: '.wrapper-{{ section.id }} .swiper-button-prev',
-        },
-
-        // And if we need scrollbar
-        scrollbar: {
-            el: '.wrapper-{{ section.id }} .swiper-scrollbar',
-        },
-    });
-</script>
 {%- schema -%}
 {
     "name": "Slide Show",
-    "settings": [],
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "loop",
+            "label": "Loop",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "autoplay",
+            "label": "Autoplay",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "pagination",
+            "label": "Pagination",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "navigation",
+            "label": "Navigation",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "scrollbar",
+            "label": "Scrollbar",
+            "default": true
+        }
+    ],
     "blocks": [
         {
             "name": "Slide",

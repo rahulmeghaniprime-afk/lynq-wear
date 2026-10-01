@@ -1,0 +1,14 @@
+<svg
+    class="Icon Icon--select-arrow-left"
+    role="presentation"
+    viewBox="0 0 11 18"
+>
+      <path
+        d="M9.5 1.5L1.5 9l8 7.5"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        fill-rule="evenodd"
+        stroke-linecap="square"
+    />
+    </svg>

@@ -1,0 +1,7 @@
+.image_slide .img-fluid{width: 100%;height: 100%;object-fit: cover;}
+.image_slide{position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
+.image_slide_wrapper{position: relative;height: calc(100vh - var(--header-height));}
+.swiper-button-prev svg,.swiper-button-next svg{color:rgb(var(--color-background));width: 6px;height: 12px;}
+.swiper-button-prev,.swiper-button-next{width: 42px;height: 42px;border: 1px solid rgb(var(--color-background));border-radius: 9999px;}
+.swiper-horizontal .swiper-button-prev{left: 37px;}
+.swiper-horizontal .swiper-button-next{right: 45px;}

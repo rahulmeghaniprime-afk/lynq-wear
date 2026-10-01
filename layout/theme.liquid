@@ -53,7 +53,6 @@
           defaultTrigger: 'intersect',
         }),
       );
-
       document.addEventListener(
         'DOMContentLoaded',
         () => {
@@ -69,6 +68,46 @@
               },
             }),
           );
+          (function () {
+            document
+              .querySelectorAll('[data-slider="true"]')
+              .forEach((slider) => {
+                const swiper = new Swiper(slider, {
+                  speed: 800,
+                  ...(slider.dataset.loop === 'true' && { loop: true }),
+                  // if we need autoplay
+                  ...(slider.dataset.autoplay === 'true' && {
+                    autoplay: {
+                      delay: 3000,
+                      disableOnInteraction: false,
+                      pauseOnMouseEnter: true,
+                    },
+                  }),
+                  // If we need pagination
+                  ...(slider.dataset.pagination === 'true' && {
+                    pagination: {
+                      el: slider.querySelector('.swiper-pagination'),
+                      clickable: true,
+                    },
+                  }),
+
+                  // Navigation arrows
+                  ...(slider.dataset.navigation === 'true' && {
+                    navigation: {
+                      nextEl: slider.querySelector('.swiper-button-next'),
+                      prevEl: slider.querySelector('.swiper-button-prev'),
+                    },
+                  }),
+
+                  // And if we need scrollbar
+                  ...(slider.dataset.pagination === 'true' && {
+                    scrollbar: {
+                      el: slider.querySelector('.swiper-scrollbar'),
+                    },
+                  }),
+                });
+              });
+          })();
         },
         { once: true },
       );
@@ -318,6 +357,7 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'swiper.css' | asset_url | stylesheet_tag }}
+    {{ 'lynq-custom.css' | asset_url | stylesheet_tag }}
     <link
       rel="stylesheet"
       href="{{ 'component-cart-items.css' | asset_url }}"
