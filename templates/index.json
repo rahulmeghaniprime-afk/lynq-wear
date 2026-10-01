@@ -37,7 +37,83 @@
         "slide_CGzpVe"
       ],
       "name": "Slide Show",
-      "settings": {}
+      "settings": {
+        "loop": true,
+        "autoplay": true,
+        "pagination": true,
+        "navigation": true,
+        "scrollbar": true
+      }
+    },
+    "lynq_collections_h9eQtt": {
+      "type": "lynq-collections",
+      "blocks": {
+        "collection_yJ3tgg": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_SHIRTS_0604cfc1-2806-4e52-b21b-71f578bf97ea.webp",
+            "url": "",
+            "collection_label": "SHIRTS"
+          }
+        },
+        "collection_AaikcV": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_POLO_ebef04e2-4d76-42c3-bb7a-d75c8da8f39c.webp",
+            "url": "",
+            "collection_label": "POLOS"
+          }
+        },
+        "collection_jGwVUG": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_TROUERS_f5b5a569-4767-4074-bfda-8667307decbc.webp",
+            "url": "",
+            "collection_label": "TROUSERS"
+          }
+        },
+        "collection_PhRHTb": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_JACKET_b2f79c1e-cdce-40a2-b8fe-ed39f99e396d.webp",
+            "url": "",
+            "collection_label": "JACKETS"
+          }
+        },
+        "collection_h3R4KC": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_TSHIRT.webp",
+            "url": "",
+            "collection_label": "T-SHIRTS"
+          }
+        },
+        "collection_3WmyFU": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_DENIM_b7277e3d-4d4a-48d2-b833-9f195d7ce86f.webp",
+            "url": "",
+            "collection_label": "JEANS"
+          }
+        }
+      },
+      "block_order": [
+        "collection_yJ3tgg",
+        "collection_AaikcV",
+        "collection_jGwVUG",
+        "collection_PhRHTb",
+        "collection_h3R4KC",
+        "collection_3WmyFU"
+      ],
+      "name": "Collection Grids",
+      "settings": {
+        "grid": "2",
+        "vertical_align": "bottom",
+        "horizontal_align": "left",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     },
     "image_banner": {
       "type": "image-banner",
@@ -109,6 +185,7 @@
   },
   "order": [
     "lynq_slideshow_aUaXcr",
+    "lynq_collections_h9eQtt",
     "image_banner",
     "featured_collection"
   ]
