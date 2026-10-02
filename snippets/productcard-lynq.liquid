@@ -1,0 +1,15 @@
+<div class="product-card" data-product-handle="{{ product.handle }}">
+  <a href="{{ product.url }}" class="product-card__link">
+    <div class="product-card__image-wrapper">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 600 | image_tag: class: 'product-card__image' }}
+      {% else %}
+        {{ 'placeholder-image' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+    <div class="product-card__info">
+      <h3 class="product-card__title">{{ product.title }}</h3>
+      <p class="product-card__price">{{ product.price | money }}</p>
+    </div>
+  </a>
+</div>

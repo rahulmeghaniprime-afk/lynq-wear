@@ -1,0 +1,152 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding">
+    <div class="collection-grids Image_banner">
+      <div
+        style="--header-height:85px"
+        class="collection_grids grid_1"
+      >
+        {% assign sizes = 100 | divided_by: 1 | append: 'vw' %}
+
+          {% assign col_module = "now" | date: "%N" | modulo: 6 | plus: 1 %}
+          <div class="col_grid_wrapper">
+            <a
+              class="col_grid align_content {{section.settings.vertical_align}} {{section.settings.horizontal_align}}"
+              href="{{ section.settings.url }}"
+            >
+              {% if section.settings.image != blank %}
+                {{
+                  section.settings.image
+                  | image_url: width: 2880
+                  | image_tag:
+                    widths: '480, 765, 900, 1000, 1200, 1500, 2000, 2880',
+                    sizes: sizes,
+                    class: 'blur-up img-fluid',
+                    loading: 'lazy',
+                    fetchpriority: 'auto'
+                  | escape
+                }}
+              {% else %}
+                {{ 'collection-' | append: col_module | placeholder_svg_tag }}
+              {% endif %}
+              <span class="collection_title">
+                {{- section.settings.collection_label -}}
+              </span>
+            </a>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{%- schema -%}
+{
+  "name": "t:sections.image-banner.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Collection Image"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "collection_label",
+      "label": "Label",
+      "default": "Title"
+    },
+    {
+      "type": "select",
+      "id": "vertical_align",
+      "label": "Vertical Align",
+      "options": [
+        {
+          "label": "Top",
+          "value": "top"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Bottom",
+          "value": "bottom"
+        }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_align",
+      "label": "Raw Align",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-banner.name"
+    }
+  ]
+}
+{%- endschema -%}

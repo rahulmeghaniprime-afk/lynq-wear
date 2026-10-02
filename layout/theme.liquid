@@ -74,6 +74,7 @@
               .forEach((slider) => {
                 const swiper = new Swiper(slider, {
                   speed: 800,
+                  ...(slider.dataset.slidesPerView?.length ? { slidesPerView: parseInt(slider.dataset.slidesPerView) } : {slidesPerView: 1}),
                   ...(slider.dataset.loop === 'true' && { loop: true }),
                   // if we need autoplay
                   ...(slider.dataset.autoplay === 'true' && {

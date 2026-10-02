@@ -1,0 +1,129 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding">
+    <div class="feature_products">
+      <div
+        class="swiper"
+        data-slider="true"
+        data-slider-id="slider-{{section.id}}"
+        data-loop="{{section.settings.loop}}"
+        data-pagination="{{section.settings.pagination}}"
+        data-navigation="{{section.settings.navigation}}"
+        data-scrollbar="{{section.settings.scrollbar}}"
+        data-autoplay="{{section.settings.autoplay}}"
+        data-slides-per-view="{{section.settings.grid}}"
+      >
+        <div class="swiper-wrapper">
+          {% assign math_random = 'now' | date: '%N' %}
+          {% if section.settings.collection != blank %}
+            {% for product in section.settings.collection limit: section.settings.total_products %}
+              <div class="swiper-slide">
+                {% render 'productcard-lynq' %}
+              </div>
+            {% endfor %}
+          {% else %}
+            {% for i in (1..section.settings.total_products) %}
+              {% assign math_random_index = math_random | plus: i | modulo: 6 | plus: 1 %}
+              <div class="swiper-slide">
+                {{ 'product-' | append: math_random_index | placeholder_svg_tag }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- schema -%}
+{
+  "name": "Product Cards",
+  "settings": [
+    {
+      "type": "select",
+      "id": "grid",
+      "label": "Raw Grid",
+      "options": [
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        },
+        {
+          "label": "4",
+          "value": "4"
+        },
+        {
+          "label": "5",
+          "value": "5"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "total_products",
+      "label": "Total Products",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Cards"
+    }
+  ]
+}
+{%- endschema -%}
