@@ -260,6 +260,7 @@
     },
     "lynq_product_cards_UKwg9E": {
       "type": "lynq-product-cards",
+      "disabled": true,
       "name": "Product Cards",
       "settings": {
         "grid": "4",
