@@ -13,7 +13,7 @@
 {%- endstyle -%}
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="section-{{ section.id }}-padding">
-    <div class="collection-grids Image_banner">
+    <div class="collection-grids image_banner">
       <div
         style="--header-height:85px"
         class="collection_grids grid_1"
@@ -33,7 +33,18 @@
                   | image_tag:
                     widths: '480, 765, 900, 1000, 1200, 1500, 2000, 2880',
                     sizes: sizes,
-                    class: 'blur-up img-fluid',
+                    class: 'blur-up img-fluid mobile_hide',
+                    loading: 'lazy',
+                    fetchpriority: 'auto'
+                  | escape
+                }}
+                {{
+                  section.settings.mobile_image
+                  | image_url: width: 2880
+                  | image_tag:
+                    widths: '480, 765, 900, 1000, 1200, 1500, 2000, 2880',
+                    sizes: sizes,
+                    class: 'blur-up img-fluid desktop_hide',
                     loading: 'lazy',
                     fetchpriority: 'auto'
                   | escape
@@ -59,6 +70,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "Collection Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Collection Mobile Image"
     },
     {
       "type": "url",

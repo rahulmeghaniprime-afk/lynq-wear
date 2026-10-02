@@ -50,7 +50,18 @@
                                             | image_tag:
                                                 widths: '480, 765, 900, 1000, 1200, 1500, 2000, 2880',
                                                 sizes: '100vw',
-                                                class: 'blur-up img-fluid',
+                                                class: 'blur-up img-fluid mobile_hide',
+                                                loading: loading,
+                                                fetchpriority: fetchpriority
+                                            | escape
+                                        }}
+                                        {{
+                                            block.settings.mobile_image
+                                            | image_url: width: 2880
+                                            | image_tag:
+                                                widths: '480, 765, 900, 1000, 1200, 1500, 2000, 2880',
+                                                sizes: '100vw',
+                                                class: 'blur-up img-fluid desktop_hide',
                                                 loading: loading,
                                                 fetchpriority: fetchpriority
                                             | escape
@@ -127,6 +138,11 @@
                     "type": "image_picker",
                     "id": "image",
                     "label": "Select Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Select Mobile Image"
                 }
             ]
         }

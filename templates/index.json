@@ -15,19 +15,22 @@
         "slide_daRkN4": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_-_WEB_-_RR_-_DENIM.webp"
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_RR_-_DENIM.webp",
+            "mobile_image": "shopify://shop_images/MOB_-RR_-_DENIM.webp"
           }
         },
         "slide_VJ8jAy": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_-_WEB_-_RR-_WALK_2395eb08-959e-4256-9c4f-7510c59f45d3.webp"
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_RR-_WALK_2395eb08-959e-4256-9c4f-7510c59f45d3.webp",
+            "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-_WALK_89a3f8bc-d2fc-4b1a-b092-948e23c88778.webp"
           }
         },
         "slide_CGzpVe": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_-_WEB_-_GUILD-_RR.webp"
+            "image": "shopify://shop_images/DESKTOP_-_WEB_-_GUILD-_RR.webp",
+            "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-9.webp"
           }
         }
       },
@@ -42,7 +45,7 @@
         "autoplay": true,
         "pagination": true,
         "navigation": true,
-        "scrollbar": true
+        "scrollbar": false
       }
     },
     "lynq_collections_h9eQtt": {
@@ -52,6 +55,7 @@
           "type": "collection",
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_SHIRTS_0604cfc1-2806-4e52-b21b-71f578bf97ea.webp",
+            "mobile_image": "shopify://shop_images/MOB-_GRID-SHIRTS.webp",
             "url": "",
             "collection_label": "SHIRTS"
           }
@@ -60,6 +64,7 @@
           "type": "collection",
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_POLO_ebef04e2-4d76-42c3-bb7a-d75c8da8f39c.webp",
+            "mobile_image": "shopify://shop_images/MOB-GRID-POLOS.webp",
             "url": "",
             "collection_label": "POLOS"
           }
@@ -68,6 +73,7 @@
           "type": "collection",
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_TROUERS_f5b5a569-4767-4074-bfda-8667307decbc.webp",
+            "mobile_image": "shopify://shop_images/MOB-_GRID-TROUSERS.webp",
             "url": "",
             "collection_label": "TROUSERS"
           }
@@ -76,6 +82,7 @@
           "type": "collection",
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_JACKET_b2f79c1e-cdce-40a2-b8fe-ed39f99e396d.webp",
+            "mobile_image": "shopify://shop_images/MOB-GRID-jackets.webp",
             "url": "",
             "collection_label": "JACKETS"
           }
@@ -84,6 +91,7 @@
           "type": "collection",
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_TSHIRT.webp",
+            "mobile_image": "shopify://shop_images/MOB-_GRID-t-SHIRTS.webp",
             "url": "",
             "collection_label": "T-SHIRTS"
           }
@@ -92,6 +100,7 @@
           "type": "collection",
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_DENIM_b7277e3d-4d4a-48d2-b833-9f195d7ce86f.webp",
+            "mobile_image": "shopify://shop_images/MOB-_GRID-JEANS.webp",
             "url": "",
             "collection_label": "JEANS"
           }
@@ -120,6 +129,7 @@
       "name": "t:sections.image-banner.name",
       "settings": {
         "image": "shopify://shop_images/DESKTOP_-_WEB_-_RR-_INNERV_1.webp",
+        "mobile_image": "shopify://shop_images/MOB_-_RR-_INNERV_1_c7079512-14c4-4ea7-988b-5dc9041fab0a.webp",
         "url": "",
         "collection_label": "",
         "vertical_align": "bottom",
@@ -134,6 +144,7 @@
       "name": "t:sections.image-banner.name",
       "settings": {
         "image": "shopify://shop_images/DESKTOP_-_RR-NEW_ARRIVAL_3f20d78d-1300-4cf5-8328-edcad8bd4266.webp",
+        "mobile_image": "shopify://shop_images/MOB_-RR-NEW_ARRIVAL_dc4d30d4-6343-4d76-a1bf-738bfee3cc99.webp",
         "url": "",
         "collection_label": "",
         "vertical_align": "bottom",
@@ -148,6 +159,7 @@
       "name": "t:sections.image-banner.name",
       "settings": {
         "image": "shopify://shop_images/DESKTOP-RR-PRINTED_SHIRTS.webp",
+        "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-6.webp",
         "url": "",
         "collection_label": "",
         "vertical_align": "bottom",
@@ -162,6 +174,7 @@
       "name": "t:sections.image-banner.name",
       "settings": {
         "image": "shopify://shop_images/DESKTOP-RR-travel.webp",
+        "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-5_0c25a313-efaf-4ee4-b078-a58e7e41c006.webp",
         "url": "",
         "collection_label": "",
         "vertical_align": "bottom",
@@ -176,6 +189,7 @@
       "name": "t:sections.image-banner.name",
       "settings": {
         "image": "shopify://shop_images/DESKTOP-RR-1_APP_FOR_ALL_c8a171e1-ebf8-4044-8e0b-6ef0acd7ae53.webp",
+        "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-8.webp",
         "url": "",
         "collection_label": "",
         "vertical_align": "bottom",
@@ -190,6 +204,7 @@
       "name": "t:sections.image-banner.name",
       "settings": {
         "image": "shopify://shop_images/DESKTOP-RR-VISIT_STORE.webp",
+        "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-7.webp",
         "url": "",
         "collection_label": "",
         "vertical_align": "bottom",
@@ -204,6 +219,7 @@
       "name": "t:sections.image-banner.name",
       "settings": {
         "image": "shopify://shop_images/DESKTO-corporate.webp",
+        "mobile_image": "shopify://shop_images/MOB-FULL-CORPORATE_8bac742f-c16f-43c9-ba78-b9af98e15334.webp",
         "url": "",
         "collection_label": "",
         "vertical_align": "bottom",
