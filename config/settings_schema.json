@@ -143,7 +143,13 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
-      }
+      },
+      {
+        "type": "font_picker",
+        "id": "type_additional_font",
+        "default": "assistant_n4",
+        "label": "additional font"
+      },
     ]
   },
   {

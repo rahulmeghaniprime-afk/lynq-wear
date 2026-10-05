@@ -1,0 +1,176 @@
+{% style %}
+  {% if section.settings.sticky_header == 'sticky' %}
+      #shopify-section-{{ section.id }}{
+          position:sticky;top:0;
+          background:rgb(var(--color-background));
+          --header-heading-color:#121212;
+      }
+  {% endif %}
+{% endstyle %}
+<div class="priyam header-{{ section.settings.sticky_header }}">
+  <header>
+    <div class="header_wrapper">
+      <div class="menu_left">
+        <nav class="desktop_nav">
+          <div class="nav_wrap">
+            {% for link in section.settings.main_menu.links %}
+              <div class="link_wrap parent_link" style="--link-name:'{{ link.title }}';">
+                <a class="nav-links parent" href="{{ link.url }}"
+                  ><span class="link_title">{{ link.title }}</span></a
+                >
+                {% if link.links.size > 0 %}
+                  <div class="sublinks_drawer">
+                    <div class="sublinks_drawer_links">
+                      {% for sublink in link.links %}
+                        <a class="sublink" href="{{ sublink.url }}">{{ sublink.title }}</a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </nav>
+        <div class="mobile_nav">
+          <span></span>
+        </div>
+        <div class="mobile_nav_drawer">
+          <div class="mobile_menu_overlay">&nbsp;</div>
+          <div class="mobile_nav_drawer_links">
+            {% for link in section.settings.main_menu.links %}
+              {% if link.links.size > 0 %}
+                <div class="two_block_menu">
+                  <div class="main_drawer_link" style="--link-name:'{{ link.title }}';">
+                    <a class="child_links_m" href="{{ link.url }}">{{ link.title }}</a>
+                  </div>
+                  <div class="sublinks_side">
+                    <div class="sub_side_links">
+                      {% for sublink in link.links %}
+                        <a class="sublink" href="{{ sublink.url }}">{{ sublink.title }}</a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              {% else %}
+                <div class="single_block_menu">
+                  <div class="main_drawer_link" style="--link-name:'{{ link.title }}';">
+                    <a class="child_links_m" href="{{ link.url }}">{{ link.title }}</a>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="menu_center">
+        <a class="logo" href="{{ routes.root_url }}">
+          {% if settings.logo != blank %}
+            {{
+              settings.logo
+              | image_url: width: 2880
+              | image_tag: class: 'blur-up img-fluid', loading: 'eager', fetchpriority: 'high'
+            }}
+          {% else %}
+            {{ 'logo' | placeholder_svg_tag }}
+          {% endif %}
+        </a>
+      </div>
+      <div class="menu_right">
+        <div class="nav_wrap">
+          <div class="link_wrap">
+            <a class="search_header nav-links" href="{{ routes.root_url }}">Search</a>
+            <a
+              class="login_header nav-links"
+              href="{{ routes.root_url }}"
+              {% raw %}onclick="openLogin(event)"{% endraw %}
+              >Log In<shopify-account> </shopify-account
+            ></a>
+            <a class="cart_header nav-links" href="{{ routes.root_url }}">
+              Cart {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<script>
+    function openLogin(e){
+        e.preventDefault();
+        const shopifyAccountEl = document.querySelector('shopify-account');
+        if (shopifyAccountEl && shopifyAccountEl.shadowRoot) {
+            const internalButton = shopifyAccountEl.shadowRoot.querySelector('button');
+            if (internalButton) {
+                internalButton.click();
+                {% comment %} shopifyAccountEl.shadowRoot.querySelector('.account-button').dispatchEvent(new MouseEvent('click .account-button', { bubbles: true })); {% endcomment %}
+            }
+        }
+    }
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.parent_link').forEach((link) => {
+      link.addEventListener('mouseenter', (e) => linkmouseEnter(e.currentTarget));
+      link.addEventListener('mouseleave', (e) => linkmouseLeave(e.currentTarget));
+      link.addEventListener('click', (e) => linkActive(e.currentTarget));
+    });
+    function linkActive(activeLink) {
+      document.querySelectorAll('.parent_link').forEach((link) => {
+        link.classList.remove('active');
+      });
+      activeLink.classList.add('active');
+    }
+    function linkmouseEnter(activeLink) {
+      document.querySelectorAll('.parent_link').forEach((link) => {
+        link.classList.remove('active');
+      });
+      activeLink.classList.add('active');
+    }
+    function linkmouseLeave(activeLink) {
+      document.querySelectorAll('.parent_link').forEach((link) => {
+        link.classList.remove('active');
+      });
+    }
+    document.querySelector('.mobile_nav').addEventListener('click', (e) => {
+      e.currentTarget.classList.toggle('active');
+      document.querySelector('.mobile_nav_drawer').classList.toggle('active');
+      document.body.classList.toggle('overflow-hidden');
+    });
+    document.querySelector('.mobile_menu_overlay').addEventListener('click', (e) => {
+      document.querySelector('.mobile_nav').classList.remove('active');
+      document.querySelector('.mobile_nav_drawer').classList.remove('active');
+      document.body.classList.remove('overflow-hidden');
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Select Menu"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header",
+      "label": "Header Type",
+      "options": [
+        {
+          "label": "Sticky",
+          "value": "sticky"
+        },
+        {
+          "label": "Fixed",
+          "value": "fixed"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.header.name"
+    }
+  ]
+}
+{% endschema %}

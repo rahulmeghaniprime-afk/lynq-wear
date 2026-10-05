@@ -345,7 +345,7 @@
 
 .header-localization .disclosure .localization-form__select {
   font-size: 1.4rem;
-  letter-spacing: 0.06rem;
+  letter-spacing: 0;
   height: auto;
   min-height: initial;
   background: transparent;

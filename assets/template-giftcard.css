@@ -30,7 +30,7 @@ html {
 body {
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-foreground));
-  letter-spacing: 0.07rem;
+  letter-spacing: 0;
   line-height: calc(1 + 0.8 / var(--font-body-scale));
   max-width: var(--page-width);
   margin: 0 auto;
@@ -57,7 +57,7 @@ h2,
   font-family: var(--font-heading-family);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
-  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+  letter-spacing: 0;
   line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
   text-align: center;
 }
@@ -102,7 +102,7 @@ h2,
   min-width: 12rem;
   height: auto;
   font-size: 1.5rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
 }
 
@@ -172,7 +172,7 @@ h2,
   gap: 0rem 1rem;
   align-items: center;
   justify-content: center;
-  letter-spacing: 1px;
+  letter-spacing: 0;
   opacity: 0.8;
 }
 
@@ -185,7 +185,7 @@ h2,
   font-size: 1.8rem;
   line-height: calc(1 + 0.6 / var(--font-body-scale));
   text-align: center;
-  letter-spacing: 0.25rem;
+  letter-spacing: 0;
   opacity: 0.8;
   margin: 3rem 0;
 }
@@ -208,7 +208,7 @@ h2,
   border-radius: 4rem;
   display: inline-block;
   font-size: 1.2rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0;
   line-height: 1;
   padding: 0.6rem 1.3rem;
   text-align: center;
