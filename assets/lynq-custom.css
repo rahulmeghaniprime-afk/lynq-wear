@@ -106,5 +106,5 @@ shopify-account::part(signed-out-avatar){display: none;}
 }
 @media screen and (max-width:399px) {
     .header_wrapper{padding:0 20px;}
-    .desktop_hide.link_wrap{gap:12px;}
+    .desktop_hide.link_wrap{gap:8px;}
 }
