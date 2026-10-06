@@ -93,8 +93,10 @@ shopify-account::part(signed-out-avatar){display: none;}
     .image_banner .col_grid .img-fluid{position: static;}
     .image_banner .col_grid{position: static;display: block;}
     .collection_title{font-size: 14px;}
-    .desktop_hide.link_wrap{display:flex;}
+    .desktop_hide.link_wrap{display:flex;gap:15px;}
     .desktop_hide.link_wrap .icon{width:22px;height:22px;}
+    .cart_header,.login_header,.search_header{display:flex;}
+    .desktop_hide.link_wrap .login_header .icon-account{width:24px;height:24px;}
 }
 @media screen and (max-width:749px) {
     .collection_grids.grid_4{display: grid;grid-template-columns: repeat(2, 1fr);}
