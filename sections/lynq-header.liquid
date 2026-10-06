@@ -90,15 +90,15 @@
             </a>
           </div>
           <div class="mobile_link_wrap">
-            <a class="search_header nav-links" href="{{ routes.root_url }}">{{ 'icon-lqynqsearch.svg' | inline_asset_content }}</a>
+            <a class="search_header nav-links" href="{{ routes.root_url }}">{{ 'icon-lynqsearch.svg' | inline_asset_content }}</a>
             <a
               class="login_header nav-links"
               href="{{ routes.root_url }}"
               {% raw %}onclick="openLogin(event)"{% endraw %}
-              >{{ 'icon-lqynqaccount.svg' | inline_asset_content }}<shopify-account> </shopify-account
+              >{{ 'icon-lynqaccount.svg' | inline_asset_content }}<shopify-account> </shopify-account
             ></a>
             <a class="cart_header nav-links" href="{{ routes.root_url }}">
-              {{ 'icon-lqynqcart.svg' | inline_asset_content }} {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
+              {{ 'icon-lynqcart.svg' | inline_asset_content }} {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
             </a>
           </div>
         </div>
