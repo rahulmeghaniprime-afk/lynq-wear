@@ -77,7 +77,7 @@
       </div>
       <div class="menu_right">
         <div class="nav_wrap">
-          <div class="link_wrap">
+          <div class="mobile_hide link_wrap">
             <a class="search_header nav-links" href="{{ routes.root_url }}">Search</a>
             <a
               class="login_header nav-links"
@@ -89,7 +89,7 @@
               Cart {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
             </a>
           </div>
-          <div class="mobile_link_wrap">
+          <div class="desktop_hide link_wrap">
             <a class="search_header nav-links" href="{{ routes.root_url }}">{{ 'icon-lynqsearch.svg' | inline_asset_content }}</a>
             <a
               class="login_header nav-links"
