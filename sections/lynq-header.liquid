@@ -77,29 +77,33 @@
       </div>
       <div class="menu_right">
         <div class="nav_wrap">
-          <div class="mobile_hide link_wrap">
-            <a class="search_header nav-links" href="{{ routes.root_url }}">Search</a>
-            <a
-              class="login_header nav-links"
-              href="{{ routes.root_url }}"
-              {% raw %}onclick="openLogin(event)"{% endraw %}
-              >Log In<shopify-account> </shopify-account
-            ></a>
-            <a class="cart_header nav-links" href="{{ routes.root_url }}">
-              Cart {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
-            </a>
+          <div class="mobile_hide">
+            <div class="link_wrap">
+              <a class="search_header nav-links" href="{{ routes.root_url }}">Search</a>
+              <a
+                class="login_header nav-links"
+                href="{{ routes.root_url }}"
+                {% raw %}onclick="openLogin(event)"{% endraw %}
+                >Log In<shopify-account> </shopify-account
+              ></a>
+              <a class="cart_header nav-links" href="{{ routes.root_url }}">
+                Cart {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
+              </a>
+            </div>
           </div>
-          <div class="desktop_hide link_wrap">
-            <a class="search_header nav-links" href="{{ routes.root_url }}">{{ 'icon-lynqsearch.svg' | inline_asset_content }}</a>
-            <a
-              class="login_header nav-links"
-              href="{{ routes.root_url }}"
-              {% raw %}onclick="openLogin(event)"{% endraw %}
-              >{{ 'icon-lynqaccount.svg' | inline_asset_content }}<shopify-account> </shopify-account
-            ></a>
-            <a class="cart_header nav-links" href="{{ routes.root_url }}">
-              {{ 'icon-lynqcart.svg' | inline_asset_content }} {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
-            </a>
+          <div class="desktop_hide">
+            <div class="link_wrap">
+              <a class="search_header nav-links" href="{{ routes.root_url }}">{{ 'icon-lynqsearch.svg' | inline_asset_content }}</a>
+              <a
+                class="login_header nav-links"
+                href="{{ routes.root_url }}"
+                {% raw %}onclick="openLogin(event)"{% endraw %}
+                >{{ 'icon-lynqaccount.svg' | inline_asset_content }}<shopify-account> </shopify-account
+              ></a>
+              <a class="cart_header nav-links" href="{{ routes.root_url }}">
+                {{ 'icon-lynqcart.svg' | inline_asset_content }} {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -68,7 +68,6 @@
 .mobile_nav_drawer.active .mobile_nav_drawer_links{transform: translateX(0);}
 shopify-account {--shopify-account-radius-base: 0;--shopify-account-dialog-position-top:58px;}
 shopify-account::part(signed-out-avatar){display: none;}
-.desktop_hide.link_wrap{display:none;}
 
 
 
