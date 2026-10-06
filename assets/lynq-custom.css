@@ -97,6 +97,7 @@ shopify-account::part(signed-out-avatar){display: none;}
     .desktop_hide.link_wrap .icon{width:22px;height:22px;}
     .cart_header,.login_header,.search_header{display:flex;}
     .desktop_hide.link_wrap .login_header .icon-account{width:24px;height:24px;}
+    .mobile_nav{width:22px;height:22px;}
 }
 @media screen and (max-width:749px) {
     .collection_grids.grid_4{display: grid;grid-template-columns: repeat(2, 1fr);}
