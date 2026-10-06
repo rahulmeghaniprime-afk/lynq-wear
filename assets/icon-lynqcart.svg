@@ -1,0 +1,9 @@
+<svg class="icon icon-cart" viewBox="0 0 24 24" fill="none"
+     xmlns="http://www.w3.org/2000/svg" aria-label="Cart">
+  <path d="M3.5 4H5.3L7.4 15.2C7.6 16.2 8.5 17 9.6 17H17.2C18.2 17 19 16.4 19.3 15.5L21 8H6"
+        stroke="currentColor" stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+  <circle cx="9.5" cy="20" r="1.2" fill="currentColor"/>
+  <circle cx="17.2" cy="20" r="1.2" fill="currentColor"/>
+</svg>
