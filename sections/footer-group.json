@@ -1,1 +1,97 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "lynq_footer_bPQpPF": {
+      "type": "lynq-footer",
+      "blocks": {
+        "menu_yB63hL": {
+          "type": "menu",
+          "settings": {
+            "title": "HELP",
+            "menu": "help"
+          }
+        },
+        "menu_QmmiJt": {
+          "type": "menu",
+          "settings": {
+            "title": "QUICK LINKS",
+            "menu": "quick-links"
+          }
+        },
+        "social_GEbwwt": {
+          "type": "social",
+          "settings": {
+            "title": "FOLLOW US",
+            "instagram_text": "Instagram",
+            "instagram_url": "/",
+            "facebook_text": "Facebook",
+            "facebook_url": "/",
+            "pinterest_text": "Pinterest",
+            "pinterest_url": "/",
+            "linkedin_text": "LinkedIn",
+            "linkedin_url": "/"
+          }
+        },
+        "newsletter_etMgeg": {
+          "type": "newsletter",
+          "settings": {
+            "title": "NEWSLETTER",
+            "heading": "<p>Sign up to receive our news, updates, and exclusive offers.</p>",
+            "placeholder": "Your email address",
+            "button_text": "SUBSCRIBE",
+            "success_message": "Thanks for subscribing!"
+          }
+        }
+      },
+      "block_order": [
+        "menu_yB63hL",
+        "menu_QmmiJt",
+        "social_GEbwwt",
+        "newsletter_etMgeg"
+      ],
+      "name": "Custom Footer",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 72,
+        "padding_bottom": 40,
+        "copyright_text": "ALL RIGHTS RESERVED THEHOUSEOFRARE © 2025",
+        "privacy_policy_text": "Privacy Policy",
+        "privacy_policy_link": "shopify://policies/privacy-policy",
+        "terms_text": "Terms & Conditions",
+        "terms_link": "/"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": true,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "lynq_footer_bPQpPF",
+    "footer"
+  ]
+}
