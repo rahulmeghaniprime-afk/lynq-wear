@@ -74,7 +74,7 @@
               .forEach((slider) => {
                 const swiper = new Swiper(slider, {
                   speed: 800,
-                  ...(slider.dataset.slidesPerView?.length ? { slidesPerView: parseInt(slider.dataset.slidesPerView) } : {slidesPerView: 1}),
+                  ...(slider.dataset.slidesPerView?.length ? { slidesPerView: slider.dataset.slidesPerView } : {slidesPerView: 1}),
                   ...(slider.dataset.loop === 'true' && { loop: true }),
                   // if we need autoplay
                   ...(slider.dataset.autoplay === 'true' && {
@@ -117,6 +117,7 @@
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'lynq-custom.js' | asset_url }}" defer="defer"></script>
     <script
       src="{{ 'cart-disclosure-modal.js' | asset_url }}"
       defer="defer"

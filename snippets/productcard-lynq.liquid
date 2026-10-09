@@ -1,15 +1,53 @@
-<div class="product-card" data-product-handle="{{ product.handle }}">
-  <a href="{{ product.url }}" class="product-card__link">
+<product-card class="product-card" data-product-handle="{{ product.handle }}">
+  <div href="{{ product.url }}" class="product-card__link">
     <div class="product-card__image-wrapper">
       {% if product.featured_image %}
         {{ product.featured_image | image_url: width: 600 | image_tag: class: 'product-card__image' }}
       {% else %}
-        {{ 'placeholder-image' | placeholder_svg_tag }}
+        {{ 'product-1' | placeholder_svg_tag }}
       {% endif %}
+      <div class="product-size-swatch-wrapper">
+        <div class="wrapper">
+          <ul class="product-card__sizes">
+            {% for option in product.options_with_values %}
+              {% if option.name == 'Size' %}
+                {% for value in option.values %}
+                  <li class="product-card__size {% if vlaue.variant.available %} available {% else %} unavialable {% endif %}">
+                    {{ vlaue.variant.available }}
+                    <span class="size {% if vlaue.variant.available %} available {% else %} unavialable {% endif %}">{{ value }}</span>
+                    <span class="adding-product">...</span>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="product-card__info">
-      <h3 class="product-card__title">{{ product.title }}</h3>
-      <p class="product-card__price">{{ product.price | money }}</p>
+      <div class="product_title_quickadd">
+        <a href="{{ product.url }}" class="product-card__link">
+          <h3 class="product-card__title">{{ product.title }}</h3>
+        </a>
+        <div class="quick_add">
+          <button class="quick_add_toggle">
+            <svg width="14" height="14" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.23792 4.98472C4.23792 4.98472 4.23792 0.600098 8.60156 0.600098C12.9652 0.600098 12.9652 4.98472 12.9652 4.98472M0.601562 4.98472V19.6001H16.6016V4.98472H0.601562Z" stroke="#121212" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="product-card__price">
+        {% if product.compare_at_price != blank %}
+          <s class="compare_at_price textmonst">{{ product.compare_at_price | money }}</s>
+        {% endif %}
+        <span class="regular_price textmonst">{{ product.price | money }}</span>
+        {% if product.compare_at_price != blank %}
+          <span class="off_amount textmonst">
+            {{- 0.0 | plus: product.price | divided_by: product.compare_at_price | times: 100 | round: 0 }}%</span
+          >
+        {% endif %}
+      </div>
     </div>
-  </a>
-</div>
+  </div>
+</product-card>
