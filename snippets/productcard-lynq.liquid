@@ -12,9 +12,8 @@
             {% for option in product.options_with_values %}
               {% if option.name == 'Size' %}
                 {% for value in option.values %}
-                  <li class="product-card__size {% if vlaue.variant.available %} available {% else %} unavialable {% endif %}">
-                    {{ vlaue.variant.available }}
-                    <span class="size {% if vlaue.variant.available %} available {% else %} unavialable {% endif %}">{{ value }}</span>
+                  <li data-sku="{{ value.variant.product.id }}" data-vid="{{ value.variant.id }}" data-url="{{ value.variant.url }}" class="product-card__size {% if value.variant.available %} available {% else %} unavailable {% endif %}">
+                    <span class="size {% if value.variant.available %} available {% else %} unavailable {% endif %}">{{ value }}</span>
                     <span class="adding-product">...</span>
                   </li>
                 {% endfor %}

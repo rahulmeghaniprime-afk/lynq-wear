@@ -15,12 +15,13 @@
         "slide_daRkN4": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_-_WEB_-_RR_-_DENIM.webp",
+            "image": "shopify://shop_images/Rectangle_7.jpg",
             "mobile_image": "shopify://shop_images/MOB_-RR_-_DENIM.webp"
           }
         },
         "slide_VJ8jAy": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_RR-_WALK_2395eb08-959e-4256-9c4f-7510c59f45d3.webp",
             "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-_WALK_89a3f8bc-d2fc-4b1a-b092-948e23c88778.webp"
@@ -28,6 +29,7 @@
         },
         "slide_CGzpVe": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_GUILD-_RR.webp",
             "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-9.webp"
@@ -46,6 +48,48 @@
         "pagination": true,
         "navigation": true,
         "scrollbar": false
+      }
+    },
+    "lynq_turst_badges_hXrW8j": {
+      "type": "lynq-turst-badges",
+      "blocks": {
+        "collection_eYkbUU": {
+          "type": "collection",
+          "settings": {
+            "collection_label": "LUXURY REDEFINED"
+          }
+        },
+        "collection_tn9GwC": {
+          "type": "collection",
+          "settings": {
+            "collection_label": "MADE WITH EXCLUSIVE FABRIC"
+          }
+        },
+        "collection_c4hPRP": {
+          "type": "collection",
+          "settings": {
+            "collection_label": "ARTISAN MADE"
+          }
+        },
+        "collection_M4Nydf": {
+          "type": "collection",
+          "settings": {
+            "collection_label": "MADE TO MOVE"
+          }
+        }
+      },
+      "block_order": [
+        "collection_eYkbUU",
+        "collection_tn9GwC",
+        "collection_c4hPRP",
+        "collection_M4Nydf"
+      ],
+      "name": "Trust Badges",
+      "settings": {
+        "gap": 0,
+        "color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "lynq_collections_h9eQtt": {
@@ -116,10 +160,30 @@
       ],
       "name": "Collection Grids",
       "settings": {
-        "grid": "2",
+        "grid": "3",
         "vertical_align": "bottom",
         "horizontal_align": "left",
+        "gap": 5,
         "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "lynq_split_video_text_XDDULt": {
+      "type": "lynq-split-video-text",
+      "name": "Split video and text",
+      "settings": {
+        "video": "shopify://files/videos/bedd7a8d21d94c6ebb0bcdc4e6136aa1.HD-1080p-2.5Mbps-96792356.mp4",
+        "video_width": 56,
+        "overlay_width": 45,
+        "desktop_height": 100,
+        "heading": "Our Story",
+        "description": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to</p><p>make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.</p>",
+        "button_label": "Explore More",
+        "button_link": "/",
+        "content_alignment": "left",
+        "color_scheme": "scheme-3",
+        "content_padding": 8,
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -262,6 +326,7 @@
       "type": "lynq-product-cards",
       "name": "Product Cards",
       "settings": {
+        "heading": "recommended",
         "collection": "frontpage",
         "total_products": 8,
         "color_scheme": "",
@@ -272,7 +337,9 @@
   },
   "order": [
     "lynq_slideshow_aUaXcr",
+    "lynq_turst_badges_hXrW8j",
     "lynq_collections_h9eQtt",
+    "lynq_split_video_text_XDDULt",
     "lynq_image_banner_w4QKbY",
     "lynq_image_banner_fXTia9",
     "lynq_image_banner_aHEQw4",

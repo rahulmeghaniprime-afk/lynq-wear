@@ -39,7 +39,7 @@
               class="announcement-bar__link link link--text focus-inset animate-arrow"
             >
           {%- endif -%}
-          <p class="announcement-bar__message h5">
+          <p class="announcement-bar__message h6">
             <span>{{ section.blocks.first.settings.text | escape }}</span>
             {%- if section.blocks.first.settings.link != blank -%}
               {{- 'icon-arrow.svg' | inline_asset_content -}}
@@ -99,7 +99,7 @@
                         class="announcement-bar__link link link--text focus-inset animate-arrow"
                       >
                     {%- endif -%}
-                    <p class="announcement-bar__message h5">
+                    <p class="announcement-bar__message h6">
                       <span>{{ block.settings.text | escape }}</span>
                       {%- if block.settings.link != blank -%}
                         {{- 'icon-arrow.svg' | inline_asset_content -}}
@@ -127,7 +127,10 @@
         </div>
       </slideshow-component>
       {%- if request.design_mode -%}
-        <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+        <script
+          src="{{ 'theme-editor.js' | asset_url }}"
+          defer="defer"
+        ></script>
         <style>
           /* theme editor power preview fix */
           .announcement-bar-slider .slider__slide[aria-hidden='true'] {
@@ -137,23 +140,41 @@
       {%- endif -%}
     {%- endif -%}
     <div class="localization-wrapper">
-      {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+      {%- if section.settings.enable_country_selector
+        and localization.available_countries.size > 1
+      -%}
         <localization-form class="small-hide medium-hide">
-          {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
+          {%- form 'localization',
+            id: 'AnnouncementCountryForm',
+            class: 'localization-form'
+          -%}
             <div>
-              <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ 'localization.country_label' | t }}</h2>
-              {%- render 'country-localization', localPosition: 'AnnouncementCountry' -%}
+              <h2 class="visually-hidden" id="AnnouncementCountryLabel">
+                {{ 'localization.country_label' | t }}
+              </h2>
+              {%- render 'country-localization',
+                localPosition: 'AnnouncementCountry'
+              -%}
             </div>
           {%- endform -%}
         </localization-form>
       {% endif %}
 
-      {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+      {%- if section.settings.enable_language_selector
+        and localization.available_languages.size > 1
+      -%}
         <localization-form class="small-hide medium-hide">
-          {%- form 'localization', id: 'AnnouncementLanguageForm', class: 'localization-form' -%}
+          {%- form 'localization',
+            id: 'AnnouncementLanguageForm',
+            class: 'localization-form'
+          -%}
             <div>
-              <h2 class="visually-hidden" id="AnnouncementLanguageLabel">{{ 'localization.language_label' | t }}</h2>
-              {%- render 'language-localization', localPosition: 'AnnouncementLanguage' -%}
+              <h2 class="visually-hidden" id="AnnouncementLanguageLabel">
+                {{ 'localization.language_label' | t }}
+              </h2>
+              {%- render 'language-localization',
+                localPosition: 'AnnouncementLanguage'
+              -%}
             </div>
           {%- endform -%}
         </localization-form>
@@ -186,13 +207,13 @@
       "unit": "s",
       "label": "t:sections.announcement-bar.settings.change_slides_speed.label",
       "default": 5
-    },    
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
-    },  
+    },
     {
       "type": "checkbox",
       "id": "show_line_separator",
@@ -205,8 +226,8 @@
     },
     {
       "type": "paragraph",
-         "content": "t:sections.announcement-bar.settings.paragraph.content"
-    },             
+      "content": "t:sections.announcement-bar.settings.paragraph.content"
+    },
     {
       "type": "checkbox",
       "id": "show_social",

@@ -74,7 +74,9 @@
               .forEach((slider) => {
                 const swiper = new Swiper(slider, {
                   speed: 800,
-                  ...(slider.dataset.slidesPerView?.length ? { slidesPerView: slider.dataset.slidesPerView } : {slidesPerView: 1}),
+                  ...(slider.dataset.slidesPerView?.length
+                    ? { slidesPerView: slider.dataset.slidesPerView }
+                    : { slidesPerView: 'auto' }),
                   ...(slider.dataset.loop === 'true' && { loop: true }),
                   // if we need autoplay
                   ...(slider.dataset.autoplay === 'true' && {
@@ -217,7 +219,7 @@
         --font-heading-style: {{ settings.type_additional_font.style }};
         --font-heading-weight: {{ settings.type_additional_font.weight }};
 
-        
+
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -436,7 +438,6 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}
     {%- endif -%}
@@ -519,5 +520,6 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    {% render 'size-overlay' %}
   </body>
 </html>

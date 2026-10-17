@@ -15,7 +15,7 @@
     <div class="section-{{ section.id }}-padding">
         <div class="collection-grids only_collection_girds">
             <div
-                style="--header-height:85px"
+                style="--header-height:85px;--gap:{{section.settings.gap}}px;"
                 class="collection_grids grid_{{section.settings.grid}}"
             >
                 {% assign sizes = 100
@@ -139,6 +139,16 @@
                 }
             ],
             "default": "left"
+        },
+        {
+            "type": "range",
+            "id": "gap",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "gap",
+            "default": 0
         },
         {
             "type": "color_scheme",

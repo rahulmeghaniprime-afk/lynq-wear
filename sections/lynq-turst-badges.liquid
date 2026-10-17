@@ -1,0 +1,123 @@
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="section-{{ section.id }}-padding">
+        <div class="collection-grids only_collection_girds">
+            <div
+                style="--header-height:108px;--gap:{{section.settings.gap}}px;"
+                class="collection_grids trust_badges"
+            >
+                <div
+                    class="swiper"
+                    data-slider="true"
+                    data-slider-id="slider-{{section.id}}"
+                    slides-per-view="auto"
+                >
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <div class="swiper-slide">
+                                <div class="badge_grid">
+                                    <span class="badge_title">
+                                        {{- block.settings.collection_label -}}
+                                    </span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%- schema -%}
+{
+    "name": "Trust Badges",
+    "settings": [
+        {
+            "type": "range",
+            "id": "gap",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "gap",
+            "default": 0
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:sections.all.colors.label",
+            "info": "t:sections.all.colors.has_cards_info",
+            "default": "scheme-1"
+        },
+        {
+            "type": "header",
+            "content": "t:sections.all.padding.section_padding_heading"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_top",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_bottom",
+            "default": 0
+        }
+    ],
+    "blocks": [
+        {
+            "type": "collection",
+            "name": "collection",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "collection_label",
+                    "label": "Label",
+                    "default": "Title"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Trust Badges",
+            "blocks": [
+                {
+                    "type": "collection"
+                },
+                {
+                    "type": "collection"
+                },
+                {
+                    "type": "collection"
+                },
+                {
+                    "type": "collection"
+                }
+            ]
+        }
+    ]
+}
+{%- endschema -%}

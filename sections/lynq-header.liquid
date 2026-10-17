@@ -7,14 +7,17 @@
       }
   {% endif %}
 {% endstyle %}
-<div class="priyam header-{{ section.settings.sticky_header }}">
+<div class="priyam header-{{ section.settings.sticky_header }} initial_transparent">
   <header>
     <div class="header_wrapper">
       <div class="menu_left">
         <nav class="desktop_nav">
           <div class="nav_wrap">
             {% for link in section.settings.main_menu.links %}
-              <div class="link_wrap parent_link" style="--link-name:'{{ link.title }}';">
+              <div
+                class="link_wrap parent_link"
+                style="--link-name:'{{ link.title }}';"
+              >
                 <a class="nav-links parent" href="{{ link.url }}"
                   ><span class="link_title">{{ link.title }}</span></a
                 >
@@ -22,7 +25,9 @@
                   <div class="sublinks_drawer">
                     <div class="sublinks_drawer_links">
                       {% for sublink in link.links %}
-                        <a class="sublink" href="{{ sublink.url }}">{{ sublink.title }}</a>
+                        <a class="sublink" href="{{ sublink.url }}">
+                          {{- sublink.title -}}
+                        </a>
                       {% endfor %}
                     </div>
                   </div>
@@ -40,21 +45,33 @@
             {% for link in section.settings.main_menu.links %}
               {% if link.links.size > 0 %}
                 <div class="two_block_menu">
-                  <div class="main_drawer_link" style="--link-name:'{{ link.title }}';">
-                    <a class="child_links_m" href="{{ link.url }}">{{ link.title }}</a>
+                  <div
+                    class="main_drawer_link"
+                    style="--link-name:'{{ link.title }}';"
+                  >
+                    <a class="child_links_m" href="{{ link.url }}">
+                      {{- link.title -}}
+                    </a>
                   </div>
                   <div class="sublinks_side">
                     <div class="sub_side_links">
                       {% for sublink in link.links %}
-                        <a class="sublink" href="{{ sublink.url }}">{{ sublink.title }}</a>
+                        <a class="sublink" href="{{ sublink.url }}">
+                          {{- sublink.title -}}
+                        </a>
                       {% endfor %}
                     </div>
                   </div>
                 </div>
               {% else %}
                 <div class="single_block_menu">
-                  <div class="main_drawer_link" style="--link-name:'{{ link.title }}';">
-                    <a class="child_links_m" href="{{ link.url }}">{{ link.title }}</a>
+                  <div
+                    class="main_drawer_link"
+                    style="--link-name:'{{ link.title }}';"
+                  >
+                    <a class="child_links_m" href="{{ link.url }}">
+                      {{- link.title -}}
+                    </a>
                   </div>
                 </div>
               {% endif %}
@@ -64,11 +81,16 @@
       </div>
       <div class="menu_center">
         <a class="logo" href="{{ routes.root_url }}">
-          {% if settings.logo != blank %}
+          {% if section.settings.icon_html != blank %}
+            {{ section.settings.icon_html }}
+          {% elsif settings.logo != blank %}
             {{
               settings.logo
               | image_url: width: 2880
-              | image_tag: class: 'blur-up img-fluid', loading: 'eager', fetchpriority: 'high'
+              | image_tag:
+                class: 'blur-up img-fluid',
+                loading: 'eager',
+                fetchpriority: 'high'
             }}
           {% else %}
             {{ 'logo' | placeholder_svg_tag }}
@@ -79,7 +101,9 @@
         <div class="nav_wrap">
           <div class="mobile_hide">
             <div class="link_wrap">
-              <a class="search_header nav-links" href="{{ routes.root_url }}">Search</a>
+              <a class="search_header nav-links" href="{{ routes.root_url }}"
+                >Search</a
+              >
               <a
                 class="login_header nav-links"
                 href="{{ routes.root_url }}"
@@ -87,21 +111,27 @@
                 >Log In<shopify-account> </shopify-account
               ></a>
               <a class="cart_header nav-links" href="{{ routes.root_url }}">
-                Cart {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
+                Cart
+                {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
               </a>
             </div>
           </div>
           <div class="desktop_hide">
             <div class="link_wrap">
-              <a class="search_header nav-links" href="{{ routes.root_url }}">{{ 'icon-lynqsearch.svg' | inline_asset_content }}</a>
+              <a class="search_header nav-links" href="{{ routes.root_url }}">
+                {{- 'icon-lynqsearch.svg' | inline_asset_content -}}
+              </a>
               <a
                 class="login_header nav-links"
                 href="{{ routes.root_url }}"
                 {% raw %}onclick="openLogin(event)"{% endraw %}
-                >{{ 'icon-lynqaccount.svg' | inline_asset_content }}<shopify-account> </shopify-account
+              >
+                {{- 'icon-lynqaccount.svg' | inline_asset_content -}}
+                <shopify-account> </shopify-account
               ></a>
               <a class="cart_header nav-links" href="{{ routes.root_url }}">
-                {{ 'icon-lynqcart.svg' | inline_asset_content }} {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
+                {{ 'icon-lynqcart.svg' | inline_asset_content }}
+                {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}
               </a>
             </div>
           </div>
@@ -156,6 +186,18 @@
       document.querySelector('.mobile_nav_drawer').classList.remove('active');
       document.body.classList.remove('overflow-hidden');
     });
+
+    const headerSection = document.querySelector('#shopify-section-{{ section.id }}');
+    function handleScroll() {
+      if (!headerSection) return;
+      if (window.scrollY >= 100) {
+        headerSection.classList.remove('transparent_all');
+        } else {
+        headerSection.classList.add('transparent_all');
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
   });
 </script>
 {% schema %}
@@ -166,6 +208,11 @@
       "type": "link_list",
       "id": "main_menu",
       "label": "Select Menu"
+    },
+    {
+      "type": "liquid",
+      "id": "icon_html",
+      "label": "Icon Svg"
     },
     {
       "type": "select",

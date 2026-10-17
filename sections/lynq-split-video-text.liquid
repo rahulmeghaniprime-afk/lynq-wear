@@ -1,0 +1,345 @@
+{% comment %}
+    Split Video + Text section
+    - Shopify-hosted video with autoplay, muted, loop and playsinline.
+    - Desktop split layout; stacked layout on mobile.
+    - Theme color scheme controls the section background and the video fade.
+{% endcomment %}
+{% style %}
+    #SplitVideoText-{{ section.id }}{
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    @media screen and (min-width: 749px) {
+      #SplitVideoText-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top | times: 0.75 }}px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 0.75 }}px;
+      }
+    }
+{% endstyle %}
+<section
+    id="SplitVideoText-{{ section.id }}"
+    class="split-video-text color-{{ section.settings.color_scheme }} gradient"
+    style="
+        --svt-video-width: {{ section.settings.video_width }}%;
+        --svt-overlay-width: {{ section.settings.overlay_width }}%;
+        --svt-content-padding: {{ section.settings.content_padding }}%;
+        --svt-desktop-height: {{ section.settings.desktop_height }}vh;
+        --svt-content-align: {{ section.settings.content_alignment }};
+    "
+>
+    <div class="split-video-text__grid">
+        <div class="split-video-text__media">
+            {% if section.settings.video != blank %}
+                <video
+                    class="split-video-text__video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    {% if section.settings.video.preview_image != blank %}
+                        poster="{{ section.settings.video.preview_image | image_url: width: 2000 }}"
+                    {% endif %}
+                    aria-hidden="true"
+                >
+                    {% for source in section.settings.video.sources %}
+                        <source
+                            src="{{ source.url }}"
+                            type="{{ source.mime_type }}"
+                        >
+                    {% endfor %}
+                </video>
+            {% else %}
+                <div class="split-video-text__placeholder">
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    <p>Select a video in this section's settings.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="split-video-text__content">
+            <div class="split-video-text__content-inner">
+                {% if section.settings.heading != blank %}
+                    <h2 class="split-video-text__heading">
+                        {{ section.settings.heading | escape }}
+                    </h2>
+                {% endif %}
+
+                {% if section.settings.description != blank %}
+                    <div class="split-video-text__description rte">
+                        {{ section.settings.description }}
+                    </div>
+                {% endif %}
+
+                {% if section.settings.button_label != blank
+                    and section.settings.button_link != blank
+                %}
+                    <a
+                        class="split-video-text__button"
+                        href="{{ section.settings.button_link }}"
+                    >
+                        {{ section.settings.button_label | escape }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% style %}
+    #SplitVideoText-{{ section.id }} {
+      box-sizing: border-box;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__grid {
+      display: grid;
+      grid-template-columns: var(--svt-video-width) minmax(0, 1fr);
+      min-height: var(--svt-desktop-height);
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__media {
+      position: relative;
+      min-width: 0;
+      min-height: 100%;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__video{position:absolute;top:0;left:0;}
+    #SplitVideoText-{{ section.id }} .split-video-text__video,
+    #SplitVideoText-{{ section.id }} .split-video-text__placeholder {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: var(--svt-desktop-height);
+      object-fit: cover;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__media::after {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: var(--svt-overlay-width);
+      background: linear-gradient(
+        90deg,
+        rgba(var(--color-background), 0) 5.39%,
+        rgb(var(--color-background)) 100%
+      );
+      content: "";
+      pointer-events: none;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__placeholder {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 1rem;
+      padding: 8%;
+      background: rgba(var(--color-foreground), 0.04);
+      text-align: center;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__placeholder .placeholder-svg {
+      width: 100%;
+      height: auto;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__content {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      padding: var(--svt-content-padding);
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__content-inner {
+      width: 100%;
+      text-align: var(--svt-content-align);
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__description > :first-child {
+      margin-top: 0;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__description > :last-child {
+      margin-bottom: 0;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1.5em;
+      padding: 0.8em 1.5em;
+      border: 0.0625rem solid currentColor;
+      color: rgb(var(--color-foreground));
+      background: transparent;
+      text-decoration: none;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__button:hover {
+      color: rgb(var(--color-background));
+      background: rgb(var(--color-foreground));
+    }
+
+    #SplitVideoText-{{ section.id }} .split-video-text__button:focus-visible {
+      outline: 0.125rem solid currentColor;
+      outline-offset: 0.25rem;
+    }
+
+    @media screen and (max-width: 46.8125rem) {
+      #SplitVideoText-{{ section.id }} .split-video-text__grid {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+      }
+
+      #SplitVideoText-{{ section.id }} .split-video-text__media {
+        aspect-ratio: 4 / 5;
+        min-height: 0;
+      }
+
+      #SplitVideoText-{{ section.id }} .split-video-text__video,
+      #SplitVideoText-{{ section.id }} .split-video-text__placeholder {
+        min-height: 0;
+        height: 100%;
+      }
+
+      #SplitVideoText-{{ section.id }} .split-video-text__media::after {
+        display: none;
+      }
+
+      #SplitVideoText-{{ section.id }} .split-video-text__content {
+        padding: var(--svt-content-padding);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #SplitVideoText-{{ section.id }} .split-video-text__button {
+        transition: none;
+      }
+    }
+{% endstyle %}
+
+{% schema %}
+{
+    "name": "Split video and text",
+    "tag": "section",
+    "class": "section-split-video-text",
+    "settings": [
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Video"
+        },
+        {
+            "type": "range",
+            "id": "video_width",
+            "label": "Video width on desktop",
+            "min": 35,
+            "max": 70,
+            "step": 1,
+            "unit": "%",
+            "default": 56
+        },
+        {
+            "type": "range",
+            "id": "overlay_width",
+            "label": "Video fade width",
+            "min": 15,
+            "max": 60,
+            "step": 1,
+            "unit": "%",
+            "default": 45
+        },
+        {
+            "type": "range",
+            "id": "desktop_height",
+            "label": "Minimum desktop height",
+            "min": 50,
+            "max": 100,
+            "step": 5,
+            "unit": "vh",
+            "default": 90
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "A story worth watching"
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description",
+            "default": "<p>Add your description here to tell your story.</p>"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label",
+            "default": "Discover more"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+        },
+        {
+            "type": "select",
+            "id": "content_alignment",
+            "label": "Text alignment",
+            "options": [
+                { "value": "left", "label": "Left" },
+                { "value": "center", "label": "Center" },
+                { "value": "right", "label": "Right" }
+            ],
+            "default": "left"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "Color scheme",
+            "default": "scheme-1"
+        },
+        {
+            "type": "range",
+            "id": "content_padding",
+            "label": "Text area padding",
+            "min": 3,
+            "max": 16,
+            "step": 1,
+            "unit": "%",
+            "default": 8
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Section top padding",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Section bottom padding",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "default": 0
+        }
+    ],
+    "presets": [
+        {
+            "name": "Split video and text"
+        }
+    ]
+}
+{% endschema %}
