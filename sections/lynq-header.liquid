@@ -4,6 +4,7 @@
           position:sticky;top:0;
           background:rgb(var(--color-background));
           --header-heading-color:#121212;
+          transition: all linear 0.18s;
       }
   {% endif %}
 {% endstyle %}
@@ -190,7 +191,7 @@
     const headerSection = document.querySelector('#shopify-section-{{ section.id }}');
     function handleScroll() {
       if (!headerSection) return;
-      if (window.scrollY >= 100) {
+      if (window.scrollY >= 120) {
         headerSection.classList.remove('transparent_all');
         } else {
         headerSection.classList.add('transparent_all');

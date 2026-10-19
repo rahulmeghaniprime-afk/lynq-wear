@@ -1,0 +1,507 @@
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    #VideoSlider-{{ section.id }} {
+      --vs-gap: {{ section.settings.gap }}px;
+      --vs-spv: {{ section.settings.slides_mobile }};
+      --vs-ratio: {{ section.settings.card_ratio }};
+    }
+
+    @media screen and (min-width: 750px) {
+      #VideoSlider-{{ section.id }} {
+        --vs-spv: {{ section.settings.slides_tablet }};
+      }
+    }
+
+    @media screen and (min-width: 990px) {
+      #VideoSlider-{{ section.id }} {
+        --vs-spv: {{ section.settings.slides_desktop }};
+      }
+    }
+{%- endstyle -%}
+
+<div
+    id="VideoSlider-{{ section.id }}"
+    class="video-slider color-{{ section.settings.color_scheme }} gradient{% if section.settings.loop %} video-slider--loop{% endif %}{% if section.settings.grayscale_paused %} video-slider--grayscale{% endif %}"
+>
+    <div class="section-{{ section.id }}-padding">
+        <div class="video-slider__container{% unless section.settings.full_width %} page-width{% endunless %}">
+            {%- comment -%}
+                No data-slides-per-view on purpose: the shared Swiper function then falls back to
+                slidesPerView: 'auto', and the slide width + gap are driven by the CSS variables above
+                (so slides per view can differ on mobile / tablet / desktop).
+            {%- endcomment -%}
+            <div
+                class="video-slider__swiper swiper"
+                data-slider="true"
+                data-loop="{{ section.settings.loop }}"
+                {% if section.settings.show_arrows %}
+                    data-navigation="true"
+                {% endif %}
+            >
+                <div class="swiper-wrapper">
+                    {%- for block in section.blocks -%}
+                        {%- assign video = block.settings.video -%}
+                        {%- assign poster = block.settings.poster
+                            | default: video.preview_image
+                        -%}
+                        <div
+                            class="swiper-slide video-slider__slide"
+                            {{ block.shopify_attributes }}
+                        >
+                            <div class="video-slider__card">
+                                {%- if video != blank -%}
+                                    <video
+                                        class="video-slider__video"
+                                        playsinline
+                                        preload="metadata"
+                                        {% if section.settings.mute_videos %}
+                                            muted
+                                        {% endif %}
+                                        {% if poster != blank %}
+                                            poster="{{ poster | image_url: width: 900 }}"
+                                        {% endif %}
+                                    >
+                                        {%- for source in video.sources -%}
+                                            <source
+                                                src="{{ source.url }}"
+                                                type="{{ source.mime_type }}"
+                                            >
+                                        {%- endfor -%}
+                                    </video>
+                                    <button
+                                        type="button"
+                                        class="video-slider__toggle"
+                                        aria-pressed="false"
+                                        aria-label="Play video"
+                                        data-label-play="Play video"
+                                        data-label-pause="Pause video"
+                                    >
+                                        <span
+                                            class="video-slider__play"
+                                            aria-hidden="true"
+                                        >
+                                            <svg
+                                                width="33"
+                                                height="33"
+                                                viewBox="0 0 33 33"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                focusable="false"
+                                            >
+                                                <circle cx="16.5" cy="16.5" r="16.5" fill="white" fill-opacity="0.8"/>
+                                                <path d="M21.8965 16.804L14.032 22.8136L14.032 10.7944L21.8965 16.804Z" fill="#333333"/>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                {%- else -%}
+                                    {{
+                                        'lifestyle-1'
+                                        | placeholder_svg_tag: 'video-slider__placeholder'
+                                    }}
+                                {%- endif -%}
+                            </div>
+                        </div>
+                    {%- endfor -%}
+                </div>
+
+                {%- if section.settings.show_arrows -%}
+                    <button
+                        type="button"
+                        class="swiper-button-prev video-slider__nav video-slider__nav--prev"
+                        aria-label="Previous slide"
+                    >
+                        {{ 'icon-lynq-prev.svg' | inline_asset_content }}
+                    </button>
+                    <button
+                        type="button"
+                        class="swiper-button-next video-slider__nav video-slider__nav--next"
+                        aria-label="Next slide"
+                    >
+                        {{ 'icon-lynq-next.svg' | inline_asset_content }}
+                    </button>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% stylesheet %}
+    .video-slider {
+        overflow: hidden;
+    }
+
+    .video-slider .video-slider__swiper {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Slide width = (container - gaps) / slides-per-view. Swiper ('auto' mode) measures the margin too. */
+    .video-slider .video-slider__slide {
+        width: calc(
+            (100% - var(--vs-gap) * (var(--vs-spv) - 1)) / var(--vs-spv)
+        );
+        margin-right: var(--vs-gap);
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    /* Without loop, drop the trailing gap so a full row doesn't count as overflow. */
+    .video-slider:not(.video-slider--loop) .video-slider__slide:last-child {
+        margin-right: 0;
+    }
+
+    .video-slider .video-slider__card {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: var(--vs-ratio);
+        background: rgb(var(--color-foreground) / 0.08);
+    }
+
+    .video-slider .video-slider__video,
+    .video-slider .video-slider__placeholder {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+    .video-slider--grayscale .video-slider__video {
+        filter: grayscale(1);
+        transition: filter 0.4s ease;
+    }
+
+    .video-slider--grayscale
+        .video-slider__card.is-playing
+        .video-slider__video {
+        filter: grayscale(0);
+    }
+
+    /* Whole card is the play / pause target */
+    .video-slider .video-slider__toggle {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .video-slider .video-slider__toggle:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: -4px;
+    }
+
+    .video-slider .video-slider__play {
+        display: flex;
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease;
+    }
+
+    .video-slider .video-slider__card.is-playing .video-slider__play {
+        opacity: 0;
+        transform: scale(0.85);
+        pointer-events: none;
+    }
+
+    /* Prev / next arrows (override Swiper's default icon-font arrows) */
+    .video-slider .video-slider__nav.swiper-button-prev,
+    .video-slider .video-slider__nav.swiper-button-next {
+        width: 30px;
+        height: 30px;
+        margin: -15px 0 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        filter: drop-shadow(0 0 6px rgb(0 0 0 / 0.35));
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .video-slider .video-slider__nav::after {
+        display: none;
+    }
+
+    .video-slider .video-slider__nav svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .video-slider .video-slider__nav.swiper-button-prev {
+        left: 20px;
+        right: auto;
+    }
+
+    .video-slider .video-slider__nav.swiper-button-next {
+        right: 20px;
+        left: auto;
+    }
+
+    @media screen and (max-width: 749px) {
+        .video-slider .video-slider__nav {
+            display: none;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .video-slider .video-slider__play,
+        .video-slider--grayscale .video-slider__video {
+            transition: none;
+        }
+    }
+{% endstylesheet %}
+
+{% javascript %}
+    (function () {
+        // Delegated listeners so Swiper's loop clones and editor section reloads keep working.
+        function syncCard(video) {
+            var card = video.closest('.video-slider__card');
+            if (!card) return;
+            var toggle = card.querySelector('.video-slider__toggle');
+            var playing = !video.paused && !video.ended;
+            card.classList.toggle('is-playing', playing);
+            if (toggle) {
+                toggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
+                toggle.setAttribute(
+                    'aria-label',
+                    playing
+                        ? toggle.dataset.labelPause
+                        : toggle.dataset.labelPlay,
+                );
+            }
+        }
+
+        document.addEventListener('click', function (event) {
+            var toggle = event.target.closest('.video-slider__toggle');
+            if (!toggle) return;
+            var video = toggle
+                .closest('.video-slider__card')
+                .querySelector('video');
+            if (!video) return;
+            if (video.paused || video.ended) {
+                var promise = video.play();
+                if (promise && promise.catch) promise.catch(function () {});
+            } else {
+                video.pause();
+            }
+        });
+
+        // media events don't bubble, so listen in the capture phase
+        document.addEventListener(
+            'play',
+            function (event) {
+                var video = event.target;
+                if (!(video instanceof HTMLVideoElement)) return;
+                var root = video.closest('.video-slider');
+                if (!root) return;
+                root.querySelectorAll('video').forEach(function (other) {
+                    if (other !== video && !other.paused) other.pause();
+                });
+                syncCard(video);
+            },
+            true,
+        );
+
+        ['pause', 'ended'].forEach(function (type) {
+            document.addEventListener(
+                type,
+                function (event) {
+                    var video = event.target;
+                    if (
+                        video instanceof HTMLVideoElement &&
+                        video.closest('.video-slider')
+                    ) {
+                        syncCard(video);
+                    }
+                },
+                true,
+            );
+        });
+    })();
+{% endjavascript %}
+
+{% schema %}
+{
+    "name": "Video slider",
+    "tag": "section",
+    "class": "section",
+    "max_blocks": 12,
+    "settings": [
+        {
+            "type": "header",
+            "content": "Slider"
+        },
+        {
+            "type": "range",
+            "id": "slides_desktop",
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "default": 5,
+            "label": "Slides per view (desktop)"
+        },
+        {
+            "type": "range",
+            "id": "slides_tablet",
+            "min": 1,
+            "max": 4,
+            "step": 0.5,
+            "default": 3,
+            "label": "Slides per view (tablet)"
+        },
+        {
+            "type": "range",
+            "id": "slides_mobile",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "default": 2,
+            "label": "Slides per view (mobile)"
+        },
+        {
+            "type": "range",
+            "id": "gap",
+            "min": 0,
+            "max": 60,
+            "step": 1,
+            "unit": "px",
+            "default": 15,
+            "label": "Gap between slides"
+        },
+        {
+            "type": "checkbox",
+            "id": "loop",
+            "default": false,
+            "label": "Enable loop",
+            "info": "Needs more videos than slides per view."
+        },
+        {
+            "type": "checkbox",
+            "id": "show_arrows",
+            "default": true,
+            "label": "Show navigation arrows",
+            "info": "Arrows are hidden on mobile."
+        },
+        {
+            "type": "header",
+            "content": "Video cards"
+        },
+        {
+            "type": "select",
+            "id": "card_ratio",
+            "label": "Card aspect ratio",
+            "default": "2 / 3",
+            "options": [
+                { "value": "2 / 3", "label": "Portrait 2:3" },
+                { "value": "3 / 4", "label": "Portrait 3:4" },
+                { "value": "4 / 5", "label": "Portrait 4:5" },
+                { "value": "9 / 16", "label": "Tall 9:16" },
+                { "value": "1 / 1", "label": "Square" }
+            ]
+        },
+        {
+            "type": "checkbox",
+            "id": "grayscale_paused",
+            "default": true,
+            "label": "Black & white until played"
+        },
+        {
+            "type": "checkbox",
+            "id": "mute_videos",
+            "default": false,
+            "label": "Play videos muted"
+        },
+        {
+            "type": "header",
+            "content": "Layout"
+        },
+        {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": true,
+            "label": "Full width (edge to edge)"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "Color scheme",
+            "default": "scheme-1"
+        },
+        {
+            "type": "header",
+            "content": "Section padding"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "Top padding",
+            "default": 36
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "Bottom padding",
+            "default": 36
+        }
+    ],
+    "blocks": [
+        {
+            "type": "video",
+            "name": "Video card",
+            "settings": [
+                {
+                    "type": "video",
+                    "id": "video",
+                    "label": "Video"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "poster",
+                    "label": "Cover image",
+                    "info": "Optional. Defaults to the video's preview image."
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Video slider",
+            "blocks": [
+                { "type": "video" },
+                { "type": "video" },
+                { "type": "video" },
+                { "type": "video" },
+                { "type": "video" }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,215 @@
+<div
+    id="Benefit-services-{{ section.id }}"
+    class="benefit-slider color-{{ section.settings.color_scheme }} gradient{% if section.settings.loop %} benefit-slider--loop{% endif %}{% if section.settings.grayscale_paused %} benefit-slider--grayscale{% endif %}"
+>
+    <div class="section-{{ section.id }}-padding">
+        <div
+            class="benefit-slider__container{% unless section.settings.full_width %} page-width{% endunless %}"
+        >
+            <div
+                class="benefit-slider__swiper swiper"
+                data-slider="true"
+                data-loop="{{ section.settings.loop }}"
+                {% if section.settings.show_arrows %}
+                    data-navigation="true"
+                {% endif %}
+            >
+                <div class="swiper-wrapper">
+                    {% for block in section.blocks %}
+                        <div
+                            class="swiper-slide benefit-slider__slide"
+                            {{ block.shopify_attributes }}
+                        >
+                            {%- if block.settings.icon != blank -%}
+                                <div
+                                    class="benefit-box"
+                                    style="--ratio:{{block.settings.icon.aspect_ratio}};--icon-width:{{block.settings.icon.width}}px;--icon-height:{{block.settings.icon.height}}px;"
+                                >
+                                    <img
+                                        src="{{ block.settings.icon |  image_url }}"
+                                        width="auto"
+                                        height="auto"
+                                        alt="{{ block.settings.icon.alt }}"
+                                        class="benefit_img"
+                                    />
+                                    <p class="benefit_title">
+                                        {{ block.settings.service_title }}
+                                    </p>
+                                    <p class="benefit_description">
+                                        {{ block.settings.service_description }}
+                                    </p>
+                                </div>
+                            {% else %}
+                                {{
+                                    'lifestyle-1'
+                                    | placeholder_svg_tag: 'video-slider__placeholder'
+                                }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% style %}
+    .section-{{ section.id }}-padding {
+          padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+          padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+        }
+        #Benefit-services-{{ section.id }} .benefit-slider__slide{
+            width: calc(100% / {{section.settings.slides_mobile}});
+            max-width: calc(100% / {{section.settings.slides_mobile}});
+        }
+
+        @media screen and (min-width: 750px) {
+            #Benefit-services-{{ section.id }} .benefit-slider__slide{
+                width: calc(100% / {{section.settings.slides_tablet}});
+                max-width: calc(100% / {{section.settings.slides_tablet}});
+            }
+            .section-{{ section.id }}-padding {
+                padding-top: {{ section.settings.padding_top }}px;
+                padding-bottom: {{ section.settings.padding_bottom }}px;
+            }
+        }
+        @media screen and (min-width: 990px) {
+            #Benefit-services-{{ section.id }} .benefit-slider__slide{
+                width: calc(100% / {{section.settings.slides_desktop}});
+                max-width: calc(100% / {{section.settings.slides_desktop}});
+            }
+        }
+{% endstyle %}
+{% schema %}
+{
+    "name": "Benefits Blocks",
+    "tag": "section",
+    "class": "section",
+    "max_blocks": 12,
+    "settings": [
+        {
+            "type": "header",
+            "content": "Slider"
+        },
+        {
+            "type": "range",
+            "id": "slides_desktop",
+            "min": 1,
+            "max": 4,
+            "step": 1,
+            "default": 4,
+            "label": "Slides per view (desktop)"
+        },
+        {
+            "type": "range",
+            "id": "slides_tablet",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "default": 2,
+            "label": "Slides per view (tablet)"
+        },
+        {
+            "type": "range",
+            "id": "slides_mobile",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "default": 1,
+            "label": "Slides per view (mobile)"
+        },
+        {
+            "type": "checkbox",
+            "id": "loop",
+            "default": false,
+            "label": "Enable loop",
+            "info": "Needs more videos than slides per view."
+        },
+        {
+            "type": "checkbox",
+            "id": "show_arrows",
+            "default": true,
+            "label": "Show navigation arrows",
+            "info": "Arrows are hidden on mobile."
+        },
+        {
+            "type": "header",
+            "content": "Video cards"
+        },
+        {
+            "type": "header",
+            "content": "Layout"
+        },
+        {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": true,
+            "label": "Full width (edge to edge)"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "Color scheme",
+            "default": "scheme-1"
+        },
+        {
+            "type": "header",
+            "content": "Section padding"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "Top padding",
+            "default": 36
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "Bottom padding",
+            "default": 36
+        }
+    ],
+    "blocks": [
+        {
+            "type": "service_block",
+            "name": "Service Block",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "Cover image",
+                    "info": "Icon image."
+                },
+                {
+                    "type": "inline_richtext",
+                    "id": "service_title",
+                    "label": "Title"
+                },
+                {
+                    "type": "inline_richtext",
+                    "id": "service_description",
+                    "label": "Description"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Benefits Blocks",
+            "blocks": [
+                { "type": "service_block" },
+                { "type": "service_block" },
+                { "type": "service_block" },
+                { "type": "service_block" }
+            ]
+        }
+    ]
+}
+{% endschema %}

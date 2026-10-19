@@ -1,0 +1,18 @@
+<svg
+    width="30"
+    height="30"
+    viewBox="0 0 30 30"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+>
+                            <path
+        d="M0.500005 15C0.500006 6.99187 6.99188 0.500001 15 0.500001C23.0081 0.500002 29.5 6.99187 29.5 15C29.5 23.0081 23.0081 29.5 15 29.5C6.99187 29.5 0.500004 23.0081 0.500005 15Z"
+        stroke="white"
+    />
+                            <path
+        d="M10.666 15L16.666 10L16.666 20L10.666 15Z"
+        fill="white"
+    />
+                        </svg>
