@@ -150,6 +150,9 @@ shopify-account::part(signed-out-avatar){display: none;}
 .benefit-slider__swiper .swiper-wrapper>div:not(:first-child){border-left: 1px solid #CCCCCC;}
 .benefit-slider__swiper .swiper-wrapper>div:nth-child(3) .benefit-box{max-width: 314px;}
 .benefit-slider__swiper .swiper-wrapper>div:nth-child(4) .benefit-box{max-width: 232px;}
+.footer_brand_info{margin-top: 34px;margin-bottom: 40px;max-width: 321px;}
+.footer_brand_info>p{margin: 0;font-size: 14px;font-weight: 500;line-height: 26px;}
+.getintouch_info>*{font-size: 14px;color: rgb(var(--color-foreground));}
 
 
 

@@ -87,7 +87,7 @@
       "name": "Trust Badges",
       "settings": {
         "gap": 0,
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-6d3d6ae6-fb0e-49f3-a750-cf492520ba6a",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -169,128 +169,241 @@
         "padding_bottom": 0
       }
     },
-    "lynq_split_video_text_XDDULt": {
+    "lynq_split_video_text_W73cGR": {
       "type": "lynq-split-video-text",
       "name": "Split video and text",
       "settings": {
         "video": "shopify://files/videos/bedd7a8d21d94c6ebb0bcdc4e6136aa1.HD-1080p-2.5Mbps-96792356.mp4",
         "video_width": 56,
         "overlay_width": 45,
-        "desktop_height": 100,
+        "desktop_height": 90,
         "heading": "Our Story",
         "description": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to</p><p>make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.</p>",
         "button_label": "Explore More",
         "button_link": "/",
         "content_alignment": "left",
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-4",
         "content_padding": 8,
         "padding_top": 0,
         "padding_bottom": 0
       }
     },
-    "lynq_image_banner_w4QKbY": {
-      "type": "lynq-image-banner",
-      "name": "t:sections.image-banner.name",
+    "lynq_video_slider_cfRarp": {
+      "type": "lynq-video-slider",
+      "blocks": {
+        "video_MHe4Ym": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/bedd7a8d21d94c6ebb0bcdc4e6136aa1.HD-1080p-2.5Mbps-96792356.mp4",
+            "poster": "shopify://shop_images/Rectangle_85.jpg"
+          }
+        },
+        "video_yXnhGn": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/bedd7a8d21d94c6ebb0bcdc4e6136aa1.HD-1080p-2.5Mbps-96792356.mp4",
+            "poster": "shopify://shop_images/Rectangle_85cloeht.jpg"
+          }
+        },
+        "video_PCM8Pd": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/bedd7a8d21d94c6ebb0bcdc4e6136aa1.HD-1080p-2.5Mbps-96792356.mp4",
+            "poster": "shopify://shop_images/Group_1437255265.jpg"
+          }
+        },
+        "video_7zYixe": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/bedd7a8d21d94c6ebb0bcdc4e6136aa1.HD-1080p-2.5Mbps-96792356.mp4",
+            "poster": "shopify://shop_images/Rectangle_85cloth4.jpg"
+          }
+        },
+        "video_jBLfUg": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/bedd7a8d21d94c6ebb0bcdc4e6136aa1.HD-1080p-2.5Mbps-96792356.mp4",
+            "poster": "shopify://shop_images/Rectangle_85_1.jpg"
+          }
+        },
+        "video_aMwjgQ": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/bedd7a8d21d94c6ebb0bcdc4e6136aa1.HD-1080p-2.5Mbps-96792356.mp4",
+            "poster": "shopify://shop_images/Rectangle_85.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "video_MHe4Ym",
+        "video_yXnhGn",
+        "video_PCM8Pd",
+        "video_7zYixe",
+        "video_jBLfUg",
+        "video_aMwjgQ"
+      ],
+      "name": "Video slider",
       "settings": {
-        "image": "shopify://shop_images/DESKTOP_-_WEB_-_RR-_INNERV_1.webp",
-        "mobile_image": "shopify://shop_images/MOB_-_RR-_INNERV_1_c7079512-14c4-4ea7-988b-5dc9041fab0a.webp",
-        "url": "",
-        "collection_label": "",
-        "vertical_align": "bottom",
-        "horizontal_align": "left",
+        "slides_desktop": 5,
+        "slides_tablet": 3,
+        "slides_mobile": 2,
+        "gap": 14,
+        "loop": false,
+        "show_arrows": true,
+        "card_ratio": "2 / 3",
+        "grayscale_paused": true,
+        "mute_videos": true,
+        "full_width": true,
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
       }
     },
-    "lynq_image_banner_fXTia9": {
-      "type": "lynq-image-banner",
-      "name": "t:sections.image-banner.name",
+    "lynq_slideshow_TfHzi7": {
+      "type": "lynq-slideshow",
+      "blocks": {
+        "slide_tagfxq": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_1437256660.jpg",
+            "mobile_image": "shopify://shop_images/MOB-FULL-CORPORATE_8bac742f-c16f-43c9-ba78-b9af98e15334.webp"
+          }
+        },
+        "slide_g9e69m": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group_1437256660.jpg",
+            "mobile_image": "shopify://shop_images/MOB-FULL-CORPORATE_8bac742f-c16f-43c9-ba78-b9af98e15334.webp"
+          }
+        }
+      },
+      "block_order": [
+        "slide_tagfxq",
+        "slide_g9e69m"
+      ],
+      "name": "Slide Show",
       "settings": {
-        "image": "shopify://shop_images/DESKTOP_-_RR-NEW_ARRIVAL_3f20d78d-1300-4cf5-8328-edcad8bd4266.webp",
-        "mobile_image": "shopify://shop_images/MOB_-RR-NEW_ARRIVAL_dc4d30d4-6343-4d76-a1bf-738bfee3cc99.webp",
-        "url": "",
-        "collection_label": "",
-        "vertical_align": "bottom",
-        "horizontal_align": "left",
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "loop": true,
+        "autoplay": true,
+        "pagination": false,
+        "navigation": true,
+        "scrollbar": true
       }
     },
-    "lynq_image_banner_aHEQw4": {
-      "type": "lynq-image-banner",
-      "name": "t:sections.image-banner.name",
+    "lynq_benefits_6TTnVA": {
+      "type": "lynq-benefits",
+      "blocks": {
+        "service_block_QDtw3j": {
+          "type": "service_block",
+          "settings": {
+            "icon": "shopify://shop_images/Group_3.svg",
+            "service_title": "&nbsp;7 DAYS RETURN&nbsp;",
+            "service_description": "Lorem Ipsum is simply dummy text of the printing"
+          }
+        },
+        "service_block_Ep6BCU": {
+          "type": "service_block",
+          "settings": {
+            "icon": "shopify://shop_images/Group_4.svg",
+            "service_title": "FREE SHIPPING&nbsp;",
+            "service_description": "Lorem Ipsum is simply dummy text of the printing"
+          }
+        },
+        "service_block_Jiy9jA": {
+          "type": "service_block",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_12.svg",
+            "service_title": "FROM FABRIC TO FINAL TOUCH. ALL INHOUSE.",
+            "service_description": "Lorem Ipsum is simply dummy text of the"
+          }
+        },
+        "service_block_JYx6qV": {
+          "type": "service_block",
+          "settings": {
+            "icon": "shopify://shop_images/Vector.svg",
+            "service_title": "DIRECT FROM FACTORY",
+            "service_description": "Lorem Ipsum is simply dummy text of the printing"
+          }
+        }
+      },
+      "block_order": [
+        "service_block_QDtw3j",
+        "service_block_Ep6BCU",
+        "service_block_Jiy9jA",
+        "service_block_JYx6qV"
+      ],
+      "name": "Benefits Blocks",
       "settings": {
-        "image": "shopify://shop_images/DESKTOP-RR-PRINTED_SHIRTS.webp",
-        "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-6.webp",
-        "url": "",
-        "collection_label": "",
-        "vertical_align": "bottom",
-        "horizontal_align": "left",
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "slides_desktop": 4,
+        "slides_tablet": 2,
+        "slides_mobile": 1,
+        "loop": false,
+        "show_arrows": true,
+        "full_width": true,
+        "color_scheme": "scheme-2",
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     },
-    "lynq_image_banner_pmrEzr": {
-      "type": "lynq-image-banner",
-      "name": "t:sections.image-banner.name",
+    "lynq_collections_list_PGrhbc": {
+      "type": "lynq-collections-list",
+      "blocks": {
+        "collection_card_XL9rgY": {
+          "type": "collection_card",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_card_eEkkBj": {
+          "type": "collection_card",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_card_3Rh8Rd": {
+          "type": "collection_card",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_card_MgC74t": {
+          "type": "collection_card",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_card_ACkHyV": {
+          "type": "collection_card",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_XL9rgY",
+        "collection_card_eEkkBj",
+        "collection_card_3Rh8Rd",
+        "collection_card_MgC74t",
+        "collection_card_ACkHyV"
+      ],
+      "name": "Collection Slider",
       "settings": {
-        "image": "shopify://shop_images/DESKTOP-RR-travel.webp",
-        "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-5_0c25a313-efaf-4ee4-b078-a58e7e41c006.webp",
-        "url": "",
-        "collection_label": "",
-        "vertical_align": "bottom",
-        "horizontal_align": "left",
+        "heading": "Shop For Your Next Move",
+        "description": "Lorem Ipsum is simply dummy text of the printing",
+        "heading_alignment": "left",
+        "heading_size": 48,
+        "slides_desktop": 5,
+        "slides_tablet": 3,
+        "slides_mobile": 1,
+        "gap": 20,
+        "card_ratio": "374 / 481",
+        "loop": false,
+        "show_arrows": true,
+        "grayscale_paused": false,
+        "full_width": true,
         "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "lynq_image_banner_qFtWhn": {
-      "type": "lynq-image-banner",
-      "name": "t:sections.image-banner.name",
-      "settings": {
-        "image": "shopify://shop_images/DESKTOP-RR-1_APP_FOR_ALL_c8a171e1-ebf8-4044-8e0b-6ef0acd7ae53.webp",
-        "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-8.webp",
-        "url": "",
-        "collection_label": "",
-        "vertical_align": "bottom",
-        "horizontal_align": "left",
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "lynq_image_banner_ray6RR": {
-      "type": "lynq-image-banner",
-      "name": "t:sections.image-banner.name",
-      "settings": {
-        "image": "shopify://shop_images/DESKTOP-RR-VISIT_STORE.webp",
-        "mobile_image": "shopify://shop_images/MOB_-_WEB_-_RR-7.webp",
-        "url": "",
-        "collection_label": "",
-        "vertical_align": "bottom",
-        "horizontal_align": "left",
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "lynq_image_banner_4EYpMy": {
-      "type": "lynq-image-banner",
-      "name": "t:sections.image-banner.name",
-      "settings": {
-        "image": "shopify://shop_images/DESKTO-corporate.webp",
-        "mobile_image": "shopify://shop_images/MOB-FULL-CORPORATE_8bac742f-c16f-43c9-ba78-b9af98e15334.webp",
-        "url": "",
-        "collection_label": "",
-        "vertical_align": "bottom",
-        "horizontal_align": "left",
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "featured_collection": {
@@ -324,6 +437,7 @@
     },
     "lynq_product_cards_UKwg9E": {
       "type": "lynq-product-cards",
+      "disabled": true,
       "name": "Product Cards",
       "settings": {
         "heading": "recommended",
@@ -339,14 +453,11 @@
     "lynq_slideshow_aUaXcr",
     "lynq_turst_badges_hXrW8j",
     "lynq_collections_h9eQtt",
-    "lynq_split_video_text_XDDULt",
-    "lynq_image_banner_w4QKbY",
-    "lynq_image_banner_fXTia9",
-    "lynq_image_banner_aHEQw4",
-    "lynq_image_banner_pmrEzr",
-    "lynq_image_banner_qFtWhn",
-    "lynq_image_banner_ray6RR",
-    "lynq_image_banner_4EYpMy",
+    "lynq_split_video_text_W73cGR",
+    "lynq_video_slider_cfRarp",
+    "lynq_slideshow_TfHzi7",
+    "lynq_benefits_6TTnVA",
+    "lynq_collections_list_PGrhbc",
     "featured_collection",
     "lynq_product_cards_UKwg9E"
   ]

@@ -14,36 +14,54 @@
     "lynq_footer_bPQpPF": {
       "type": "lynq-footer",
       "blocks": {
+        "social_GEbwwt": {
+          "type": "social",
+          "settings": {
+            "footer_description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vestibulum, tortor ut pretium mattis, nisi est blandit massa, nec imperdiet massa turpis elementum odio</p>",
+            "instagram_url": "/",
+            "facebook_url": "/",
+            "pinterest_url": "/",
+            "linkedin_url": "/"
+          }
+        },
         "menu_yB63hL": {
           "type": "menu",
           "settings": {
-            "title": "HELP",
+            "title": "ABOUT",
             "menu": "help"
+          }
+        },
+        "menu_eGNeRk": {
+          "type": "menu",
+          "settings": {
+            "title": "SHOP",
+            "menu": "shop"
+          }
+        },
+        "menu_6jB6f6": {
+          "type": "menu",
+          "settings": {
+            "title": "Collections",
+            "menu": "collections"
           }
         },
         "menu_QmmiJt": {
           "type": "menu",
           "settings": {
-            "title": "QUICK LINKS",
+            "title": "CUSTOMER SERVICE",
             "menu": "quick-links"
           }
         },
-        "social_GEbwwt": {
-          "type": "social",
+        "getin_touch_zGPPRi": {
+          "type": "getin_touch",
           "settings": {
-            "title": "FOLLOW US",
-            "instagram_text": "Instagram",
-            "instagram_url": "/",
-            "facebook_text": "Facebook",
-            "facebook_url": "/",
-            "pinterest_text": "Pinterest",
-            "pinterest_url": "/",
-            "linkedin_text": "LinkedIn",
-            "linkedin_url": "/"
+            "title": "GET IN TOUCH",
+            "gettouch": "<p>+91 70696 10111<br/><strong><br/></strong>contact.lynqwear@gmail.com<br/><strong><br/></strong>Surat, Gujarat</p>"
           }
         },
         "newsletter_etMgeg": {
           "type": "newsletter",
+          "disabled": true,
           "settings": {
             "title": "NEWSLETTER",
             "heading": "<p>Sign up to receive our news, updates, and exclusive offers.</p>",
@@ -54,17 +72,20 @@
         }
       },
       "block_order": [
-        "menu_yB63hL",
-        "menu_QmmiJt",
         "social_GEbwwt",
+        "menu_yB63hL",
+        "menu_eGNeRk",
+        "menu_6jB6f6",
+        "menu_QmmiJt",
+        "getin_touch_zGPPRi",
         "newsletter_etMgeg"
       ],
       "name": "Custom Footer",
       "settings": {
-        "color_scheme": "scheme-1",
-        "padding_top": 72,
-        "padding_bottom": 40,
-        "copyright_text": "ALL RIGHTS RESERVED THEHOUSEOFRARE © 2025",
+        "color_scheme": "scheme-4",
+        "padding_top": 84,
+        "padding_bottom": 32,
+        "copyright_text": "ALL RIGHTS RESERVED.  © LYNQ 2026.",
         "privacy_policy_text": "Privacy Policy",
         "privacy_policy_link": "shopify://policies/privacy-policy",
         "terms_text": "Terms & Conditions",
