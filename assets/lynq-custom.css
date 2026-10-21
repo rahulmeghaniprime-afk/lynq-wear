@@ -153,6 +153,8 @@ shopify-account::part(signed-out-avatar){display: none;}
 .footer_brand_info{margin-top: 34px;margin-bottom: 40px;max-width: 321px;}
 .footer_brand_info>p{margin: 0;font-size: 14px;font-weight: 500;line-height: 26px;}
 .getintouch_info>*{font-size: 14px;color: rgb(var(--color-foreground));}
+.mobile_nav_drawer_links .mobile_nav_tabr{height: 32px;position: absolute;--header-heading-color:#000000;right: 32px;}
+.mobile_nav_drawer_links .mobile_nav_tabr .mobile_nav span{width: 21px;}
 
 
 

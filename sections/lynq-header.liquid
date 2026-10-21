@@ -37,12 +37,17 @@
             {% endfor %}
           </div>
         </nav>
-        <div class="mobile_nav">
+        <div class="mobile_nav {{section.id}}">
           <span></span>
         </div>
         <div class="mobile_nav_drawer">
           <div class="mobile_menu_overlay">&nbsp;</div>
           <div class="mobile_nav_drawer_links">
+            <div class="mobile_nav_tabr">
+              <div class="mobile_nav active secondary_header_close">
+                <span></span>
+              </div>
+            </div>
             {% for link in section.settings.main_menu.links %}
               {% if link.links.size > 0 %}
                 <div class="two_block_menu">
@@ -177,10 +182,15 @@
         link.classList.remove('active');
       });
     }
-    document.querySelector('.mobile_nav').addEventListener('click', (e) => {
+    document.querySelectorAll('.mobile_nav.{{section.id}}').forEach(elem => elem.addEventListener('click', (e) => {
       e.currentTarget.classList.toggle('active');
       document.querySelector('.mobile_nav_drawer').classList.toggle('active');
       document.body.classList.toggle('overflow-hidden');
+    }));
+    document.querySelector('.secondary_header_close').addEventListener('click', (e) => {
+      document.querySelector('.mobile_nav').classList.remove('active');
+      document.querySelector('.mobile_nav_drawer').classList.remove('active');
+      document.body.classList.remove('overflow-hidden');
     });
     document.querySelector('.mobile_menu_overlay').addEventListener('click', (e) => {
       document.querySelector('.mobile_nav').classList.remove('active');
