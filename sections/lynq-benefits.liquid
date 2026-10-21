@@ -78,6 +78,14 @@
                 max-width: calc(100% / {{section.settings.slides_desktop}});
             }
         }
+        @media screen and (max-width:749px){
+            #Benefit-services-{{ section.id }} .swiper-wrapper{display: flex; flex-direction: column; transform: none !important;}
+            .benefit-box,.benefit-slider__swiper .swiper-wrapper>div:nth-child(4) .benefit-box,
+            .benefit-slider__swiper .swiper-wrapper>div:nth-child(3) .benefit-box{flex-direction: column;align-items: flex-start;max-width: 100%;padding: 16px;border-top:1px solid #CCCCCC;}
+            .benefit-slider__swiper .swiper-wrapper>div:first-child .benefit-box{border-top:0;}
+            .benefit-box{text-align:left;}
+            .benefit_description{line-height:1.5;}
+        }
 {% endstyle %}
 {% schema %}
 {
