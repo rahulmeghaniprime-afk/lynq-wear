@@ -2,8 +2,10 @@ class ProductCard extends HTMLElement {
     constructor() {
         super();
 
-        this.querySelector(".quick_add_toggle")
-            ?.addEventListener("click", (e) => this.toggleQuickView(e));
+        this.querySelector(".quick_add_toggle")?.addEventListener(
+            "click",
+            (e) => this.toggleQuickView(e),
+        );
     }
 
     toggleQuickView(e) {
@@ -18,8 +20,9 @@ class ProductCard extends HTMLElement {
             sheet.setAttribute("aria-hidden", "false");
             document.body.classList.add("overflow-hidden");
         } else {
-            this.querySelector(".product-size-swatch-wrapper")
-                ?.classList.toggle("active");
+            this.querySelector(
+                ".product-size-swatch-wrapper",
+            )?.classList.toggle("active");
         }
     }
 
@@ -27,20 +30,14 @@ class ProductCard extends HTMLElement {
         // Prevent registering listeners more than once
         if (sheet.dataset.dragInitialized === "true") return;
 
-        const handle = sheet.querySelector(
-            ".size-select-sheet__handle-js"
-        );
-        const panel = sheet.querySelector(
-            ".size-select-sheet__panel"
-        );
-        const overlay = sheet.querySelector(
-            ".size-select-sheet__overlay-js"
-        );
+        const handle = sheet.querySelector(".size-select-sheet__handle-js");
+        const panel = sheet.querySelector(".size-select-sheet__panel");
+        const overlay = sheet.querySelector(".size-select-sheet__overlay-js");
 
         if (!handle || !panel) return;
 
         sheet.dataset.dragInitialized = "true";
-        if(!sheet.dataset.optionSelectInit) this.optionSelectInit(sheet); 
+        if (!sheet.dataset.optionSelectInit) this.optionSelectInit(sheet);
 
         let startY = 0;
         let distance = 0;
@@ -52,24 +49,29 @@ class ProductCard extends HTMLElement {
             document.body.classList.remove("overflow-hidden");
         };
 
-        handle.addEventListener("touchstart", (event) => {
-            dragging = true;
-            startY = event.touches[0].clientY;
-            distance = 0;
+        handle.addEventListener(
+            "touchstart",
+            (event) => {
+                dragging = true;
+                startY = event.touches[0].clientY;
+                distance = 0;
 
-            panel.style.transition = "none";
-        }, { passive: true });
+                panel.style.transition = "none";
+            },
+            { passive: true },
+        );
 
-        handle.addEventListener("touchmove", (event) => {
-            if (!dragging) return;
+        handle.addEventListener(
+            "touchmove",
+            (event) => {
+                if (!dragging) return;
 
-            distance = Math.max(
-                0,
-                event.touches[0].clientY - startY
-            );
+                distance = Math.max(0, event.touches[0].clientY - startY);
 
-            panel.style.transform = `translateY(${distance}px)`;
-        }, { passive: true });
+                panel.style.transform = `translateY(${distance}px)`;
+            },
+            { passive: true },
+        );
 
         const endDrag = () => {
             if (!dragging) return;
@@ -81,23 +83,30 @@ class ProductCard extends HTMLElement {
             if (shouldClose) {
                 // Animate the panel down before closing it
                 panel.style.transition = "transform 0.25s ease";
-                panel.style.transform =
-                    `translateY(${panel.offsetHeight}px)`;
+                panel.style.transform = `translateY(${panel.offsetHeight}px)`;
 
-                panel.addEventListener("transitionend", () => {
-                    closeSheet();
-                    panel.style.transform = "";
-                    panel.style.transition = "";
-                }, { once: true });
+                panel.addEventListener(
+                    "transitionend",
+                    () => {
+                        closeSheet();
+                        panel.style.transform = "";
+                        panel.style.transition = "";
+                    },
+                    { once: true },
+                );
             } else {
                 // Return to its original position
                 panel.style.transition = "transform 0.25s ease";
                 panel.style.transform = "translateY(0)";
 
-                panel.addEventListener("transitionend", () => {
-                    panel.style.transform = "";
-                    panel.style.transition = "";
-                }, { once: true });
+                panel.addEventListener(
+                    "transitionend",
+                    () => {
+                        panel.style.transform = "";
+                        panel.style.transition = "";
+                    },
+                    { once: true },
+                );
             }
 
             distance = 0;
@@ -108,19 +117,108 @@ class ProductCard extends HTMLElement {
 
         overlay?.addEventListener("click", closeSheet);
     }
-    updateHTML(sheet){
-        const size_options = this.querySelector('.product-card__sizes').cloneNode(true);
-        sheet.querySelector('.size-select-sheet__options-js').innerHTML = size_options.innerHTML;
+    updateHTML(sheet) {
+        const size_options = this.querySelector(
+            ".product-card__sizes",
+        ).cloneNode(true);
+        sheet.querySelector(".size-select-sheet__options-js").innerHTML =
+            size_options.innerHTML;
     }
-    optionSelectInit(sheet){
-        sheet.querySelector('.size-select-sheet__options-js').addEventListener('click', (e)=>{
-            const selectedOption = e?.target?.closest('li');
-            if(selectedOption){
-                sheet.querySelectorAll('.size-select-sheet__options-js li').forEach(elem => elem.classList.remove('selected'));
-                selectedOption.classList.add('selected');
-            }
-        })
+    optionSelectInit(sheet) {
+        sheet
+            .querySelector(".size-select-sheet__options-js")
+            .addEventListener("click", (e) => {
+                const selectedOption = e?.target?.closest("li");
+                if (selectedOption) {
+                    sheet
+                        .querySelectorAll(".size-select-sheet__options-js li")
+                        .forEach((elem) => elem.classList.remove("selected"));
+                    selectedOption.classList.add("selected");
+                }
+            });
     }
 }
 
 customElements.define("product-card", ProductCard);
+
+// custom js
+
+(() => {
+    function initZealSliders(root = document) {
+        root.querySelectorAll("[data-zeal-slider]").forEach((slider) => {
+            if (slider.dataset.initialized === "true") return;
+
+            const slides = [...slider.querySelectorAll(".dev_Zeal-card-slide")];
+            if (slides.length <= 1) return;
+
+            slider.dataset.initialized = "true";
+
+            const prev = slider.querySelector(".dev_Zeal-prev");
+            const next = slider.querySelector(".dev_Zeal-next");
+            const current = slider.querySelector("[data-current");
+
+            let index = 0;
+            let startX = 0;
+            let startY = 0;
+
+            function showSlide(newIndex) {
+                index = (newIndex + slides.length) % slides.length;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle("is-active", i === index);
+                });
+
+                if (current) current.textContent = index + 1;
+            }
+
+            prev?.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showSlide(index - 1);
+            });
+
+            next?.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showSlide(index + 1);
+            });
+
+            slider.addEventListener(
+                "touchstart",
+                (e) => {
+                    startX = e.changedTouches[0].screenX;
+                    startY = e.changedTouches[0].screenY;
+                },
+                { passive: true },
+            );
+
+            slider.addEventListener(
+                "touchend",
+                (e) => {
+                    const diffX = e.changedTouches[0].screenX - startX;
+                    const diffY = e.changedTouches[0].screenY - startY;
+
+                    if (
+                        Math.abs(diffX) > 45 &&
+                        Math.abs(diffX) > Math.abs(diffY)
+                    ) {
+                        showSlide(index + (diffX < 0 ? 1 : -1));
+                    }
+                },
+                { passive: true },
+            );
+
+            showSlide(0);
+        });
+    }
+
+    function init() {
+        initZealSliders();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
+})();
