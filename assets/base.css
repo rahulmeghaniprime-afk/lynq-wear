@@ -3636,3 +3636,18 @@ details-disclosure > details {
   }
 }
 .ketan{display:none;}
+
+
+#ProductGridContainer .collection.page-width {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 0px 10px;
+}
+
+.product-card-wrapper .card__information .card__heading h5 a {
+    font-size: 14px;
+}
+.product-card-wrapper
+.price__container span {
+    font-size: 14px;
+}
