@@ -3644,10 +3644,122 @@ details-disclosure > details {
     padding: 0px 10px;
 }
 
-.product-card-wrapper .card__information .card__heading h5 a {
+.product-card-wrapper .card__information .card__heading  a {
     font-size: 14px;
 }
-.product-card-wrapper
-.price__container span {
+.product-card-wrapper  .price__container span {
     font-size: 14px;
+}
+
+/* Product Card Image Slider */
+.dev_Zeal-card-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.dev_Zeal-card-slides {
+    position: relative;
+    width: 100%;
+}
+
+.dev_Zeal-card-slide {
+    display: none;
+    width: 100%;
+}
+
+.dev_Zeal-card-slide.is-active {
+    display: block;
+}
+
+.dev_Zeal-slide-link {
+    display: block;
+    width: 100%;
+}
+
+.dev_Zeal-card-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.dev_Zeal-slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #121212;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 5px #0002;
+}
+
+.dev_Zeal-prev {
+    left: 8px;
+}
+
+.dev_Zeal-next {
+    right: 8px;
+}
+
+.dev_Zeal-slide-counter {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #121212;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    z-index: 3;
+}
+
+@media (hover: hover) {
+    .dev_Zeal-slide-arrow {
+        opacity: 0;
+        transition: opacity .2s ease;
+    }
+
+    .dev_Zeal-card-slider:hover .dev_Zeal-slide-arrow,
+    .dev_Zeal-card-slider:focus-within .dev_Zeal-slide-arrow {
+        opacity: 1;
+    }
+}
+.dev_Zeal-slide-arrow {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.dev_Zeal-slide-counter {
+    display: none !important;
+}
+
+button.dev_Zeal-slide-arrow.dev_Zeal-prev {
+    top: 50% !important;
+    z-index: 22;
+}
+
+.product-card-wrapper .card__inner .card__media {
+    z-index: 2;
+}
+
+button.dev_Zeal-slide-arrow.dev_Zeal-next {
+    left: auto !important;
+    top: 50% !important;
+}
+
+
+@media (hover: none) {
+    .dev_Zeal-slide-arrow {
+        opacity: 1;
+    }
 }

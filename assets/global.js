@@ -1438,3 +1438,74 @@ class CartPerformance {
     );
   }
 }
+
+
+
+(() => {
+  function initZealSliders(root = document) {
+    root.querySelectorAll('[data-zeal-slider]').forEach((slider) => {
+      if (slider.dataset.initialized === 'true') return;
+
+      const slides = [...slider.querySelectorAll('.dev_Zeal-card-slide')];
+      if (slides.length <= 1) return;
+
+      slider.dataset.initialized = 'true';
+
+      const prev = slider.querySelector('.dev_Zeal-prev');
+      const next = slider.querySelector('.dev_Zeal-next');
+      const current = slider.querySelector('[data-current');
+
+      let index = 0;
+      let startX = 0;
+      let startY = 0;
+
+      function showSlide(newIndex) {
+        index = (newIndex + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('is-active', i === index);
+        });
+
+        if (current) current.textContent = index + 1;
+      }
+
+      prev?.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        showSlide(index - 1);
+      });
+
+      next?.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        showSlide(index + 1);
+      });
+
+      slider.addEventListener('touchstart', (e) => {
+        startX = e.changedTouches[0].screenX;
+        startY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      slider.addEventListener('touchend', (e) => {
+        const diffX = e.changedTouches[0].screenX - startX;
+        const diffY = e.changedTouches[0].screenY - startY;
+
+        if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
+          showSlide(index + (diffX < 0 ? 1 : -1));
+        }
+      }, { passive: true });
+
+      showSlide(0);
+    });
+  }
+
+  function init() {
+    initZealSliders();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
