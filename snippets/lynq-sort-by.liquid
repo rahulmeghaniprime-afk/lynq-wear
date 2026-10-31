@@ -1,0 +1,225 @@
+{% doc %}
+  @param {object} results - Collection or Search object containing sort options and current sort_by
+  @param {boolean} [is_mobile] - Whether this instance is rendered in the mobile drawer
+{% enddoc %}
+
+{%- liquid
+  assign sort_by = results.sort_by | default: results.default_sort_by
+
+  # Check if results has 'relevance' (e.g. search) or 'manual' (collection)
+  assign relevance_value = 'manual'
+  for option in results.sort_options
+    if option.value == 'relevance'
+      assign relevance_value = 'relevance'
+      break
+    endif
+  endfor
+  if relevance_value != 'relevance'
+    assign relevance_value = results.default_sort_by | default: 'manual'
+  endif
+
+  # Determine which option is currently active
+  assign active_sort = relevance_value
+  if sort_by == 'created-descending'
+    assign active_sort = 'created-descending'
+  elsif sort_by == 'best-selling'
+    assign active_sort = 'best-selling'
+  elsif sort_by == 'price-descending'
+    assign active_sort = 'price-descending'
+  elsif sort_by == 'price-ascending'
+    assign active_sort = 'price-ascending'
+  elsif sort_by != blank
+    assign active_sort = sort_by
+  endif
+
+  # Fallback for any unexpected non-standard sort value
+  assign is_custom_option_active = false
+  if sort_by != relevance_value and sort_by != 'created-descending' and sort_by != 'best-selling' and sort_by != 'price-descending' and sort_by != 'price-ascending' and sort_by != blank
+    assign is_custom_option_active = true
+    assign custom_option_value = sort_by
+    assign custom_option_name = sort_by | upcase
+    for option in results.sort_options
+      if option.value == sort_by
+        assign custom_option_name = option.name | upcase
+        break
+      endif
+    endfor
+  endif
+-%}
+
+<div class="facet-filters sorting caption lynq-sort-by-wrapper{% if is_mobile %} lynq-sort-by-wrapper--mobile{% endif %}">
+  <lynq-sort-by class="lynq-sort-by" data-section-id="{{ section.id }}">
+    <div class="lynq-sort-by__inner">
+      {%- unless is_mobile -%}
+        <button
+          type="button"
+          class="lynq-sort-by__button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label="{{ 'products.facets.sort_by_label' | t }}"
+        >
+          <span class="lynq-sort-by__icon" aria-hidden="true">
+            <svg width="12" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.3529 8.70711L9.6862 11.3738L7.01953 8.70711" stroke="currentColor"></path>
+              <path d="M9.6875 11.3738V0.707108" stroke="currentColor" stroke-linejoin="round"></path>
+              <path d="M0.353516 3.37377L3.02018 0.707108L5.68685 3.37377" stroke="currentColor"></path>
+              <path d="M3.01953 0.707108V11.3738" stroke="currentColor" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          <span class="lynq-sort-by__button-text">SORT BY</span>
+        </button>
+      {%- endunless -%}
+
+      <div class="lynq-sort-by__dropdown" role="dialog" aria-label="{{ 'products.facets.sort_by_label' | t }}">
+        <div class="lynq-sort-by__header" tabindex="0" role="button" aria-label="Toggle sort options">
+          <span class="lynq-sort-by__icon" aria-hidden="true">
+            <svg width="12" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.3529 8.70711L9.6862 11.3738L7.01953 8.70711" stroke="currentColor"></path>
+              <path d="M9.6875 11.3738V0.707108" stroke="currentColor" stroke-linejoin="round"></path>
+              <path d="M0.353516 3.37377L3.02018 0.707108L5.68685 3.37377" stroke="currentColor"></path>
+              <path d="M3.01953 0.707108V11.3738" stroke="currentColor" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          <span class="lynq-sort-by__title">SORT BY</span>
+        </div>
+
+        <div class="lynq-sort-by__list" role="radiogroup" aria-label="{{ 'products.facets.sort_by_label' | t }}">
+          <!-- RELEVANCE (DEFAULT) -->
+          <div
+            class="lynq-sort-by__item{% if active_sort == relevance_value %} is-active{% endif %}"
+            data-value="{{ relevance_value }}"
+            role="radio"
+            aria-checked="{% if active_sort == relevance_value %}true{% else %}false{% endif %}"
+            tabindex="0"
+          >
+            <span class="lynq-sort-by__name">RELEVANCE (DEFAULT)</span>
+            <span class="lynq-sort-by__box" aria-hidden="true">
+              <span class="lynq-sort-by__box-check"></span>
+            </span>
+            <input
+              type="radio"
+              name="sort_by"
+              value="{{ relevance_value }}"
+              {% if active_sort == relevance_value %}checked="checked"{% endif %}
+              class="lynq-sort-by__radio visually-hidden"
+              id="LynqSort-{{ relevance_value | handleize }}{% if is_mobile %}-mobile{% endif %}"
+            >
+          </div>
+
+          <!-- NEW ARRIVALS -->
+          <div
+            class="lynq-sort-by__item{% if active_sort == 'created-descending' %} is-active{% endif %}"
+            data-value="created-descending"
+            role="radio"
+            aria-checked="{% if active_sort == 'created-descending' %}true{% else %}false{% endif %}"
+            tabindex="0"
+          >
+            <span class="lynq-sort-by__name">NEW ARRIVALS</span>
+            <span class="lynq-sort-by__box" aria-hidden="true">
+              <span class="lynq-sort-by__box-check"></span>
+            </span>
+            <input
+              type="radio"
+              name="sort_by"
+              value="created-descending"
+              {% if active_sort == 'created-descending' %}checked="checked"{% endif %}
+              class="lynq-sort-by__radio visually-hidden"
+              id="LynqSort-created-descending{% if is_mobile %}-mobile{% endif %}"
+            >
+          </div>
+
+          <!-- BEST SELLER -->
+          <div
+            class="lynq-sort-by__item{% if active_sort == 'best-selling' %} is-active{% endif %}"
+            data-value="best-selling"
+            role="radio"
+            aria-checked="{% if active_sort == 'best-selling' %}true{% else %}false{% endif %}"
+            tabindex="0"
+          >
+            <span class="lynq-sort-by__name">BEST SELLER</span>
+            <span class="lynq-sort-by__box" aria-hidden="true">
+              <span class="lynq-sort-by__box-check"></span>
+            </span>
+            <input
+              type="radio"
+              name="sort_by"
+              value="best-selling"
+              {% if active_sort == 'best-selling' %}checked="checked"{% endif %}
+              class="lynq-sort-by__radio visually-hidden"
+              id="LynqSort-best-selling{% if is_mobile %}-mobile{% endif %}"
+            >
+          </div>
+
+          <!-- PRICE HIGH TO LOW -->
+          <div
+            class="lynq-sort-by__item{% if active_sort == 'price-descending' %} is-active{% endif %}"
+            data-value="price-descending"
+            role="radio"
+            aria-checked="{% if active_sort == 'price-descending' %}true{% else %}false{% endif %}"
+            tabindex="0"
+          >
+            <span class="lynq-sort-by__name">PRICE HIGH TO LOW</span>
+            <span class="lynq-sort-by__box" aria-hidden="true">
+              <span class="lynq-sort-by__box-check"></span>
+            </span>
+            <input
+              type="radio"
+              name="sort_by"
+              value="price-descending"
+              {% if active_sort == 'price-descending' %}checked="checked"{% endif %}
+              class="lynq-sort-by__radio visually-hidden"
+              id="LynqSort-price-descending{% if is_mobile %}-mobile{% endif %}"
+            >
+          </div>
+
+          <!-- PRICE LOW TO HIGH -->
+          <div
+            class="lynq-sort-by__item{% if active_sort == 'price-ascending' %} is-active{% endif %}"
+            data-value="price-ascending"
+            role="radio"
+            aria-checked="{% if active_sort == 'price-ascending' %}true{% else %}false{% endif %}"
+            tabindex="0"
+          >
+            <span class="lynq-sort-by__name">PRICE LOW TO HIGH</span>
+            <span class="lynq-sort-by__box" aria-hidden="true">
+              <span class="lynq-sort-by__box-check"></span>
+            </span>
+            <input
+              type="radio"
+              name="sort_by"
+              value="price-ascending"
+              {% if active_sort == 'price-ascending' %}checked="checked"{% endif %}
+              class="lynq-sort-by__radio visually-hidden"
+              id="LynqSort-price-ascending{% if is_mobile %}-mobile{% endif %}"
+            >
+          </div>
+
+          {%- if is_custom_option_active -%}
+            <!-- Fallback for any active unmapped sort option -->
+            <div
+              class="lynq-sort-by__item is-active"
+              data-value="{{ custom_option_value }}"
+              role="radio"
+              aria-checked="true"
+              tabindex="0"
+            >
+              <span class="lynq-sort-by__name">{{ custom_option_name }}</span>
+              <span class="lynq-sort-by__box" aria-hidden="true">
+                <span class="lynq-sort-by__box-check"></span>
+              </span>
+              <input
+                type="radio"
+                name="sort_by"
+                value="{{ custom_option_value }}"
+                checked="checked"
+                class="lynq-sort-by__radio visually-hidden"
+                id="LynqSort-custom{% if is_mobile %}-mobile{% endif %}"
+              >
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </lynq-sort-by>
+</div>
+

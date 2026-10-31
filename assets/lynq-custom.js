@@ -222,3 +222,200 @@ customElements.define("product-card", ProductCard);
         init();
     }
 })();
+
+
+/* ==========================================================================
+   LYNQ Custom Sort By Component
+   ========================================================================== */
+class LynqSortBy extends HTMLElement {
+    constructor() {
+        super();
+        this.button = null;
+        this.dropdown = null;
+        this.header = null;
+        this.options = [];
+        this.onDocumentClick = this.onDocumentClick.bind(this);
+        this.onKeyDown = this.onKeyDown.bind(this);
+    }
+
+    connectedCallback() {
+        this.button = this.querySelector(".lynq-sort-by__button");
+        this.dropdown = this.querySelector(".lynq-sort-by__dropdown");
+        this.header = this.querySelector(".lynq-sort-by__header");
+        this.options = Array.from(this.querySelectorAll(".lynq-sort-by__item"));
+
+        if (this.button) {
+            this.button.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggle();
+            });
+        }
+
+        if (this.header) {
+            this.header.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if (this.button) {
+                    this.toggle();
+                }
+            });
+            this.header.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    if (this.button) this.toggle();
+                }
+            });
+        }
+
+        this.options.forEach((option) => {
+            option.addEventListener("click", (e) =>
+                this.handleOptionSelect(e, option),
+            );
+            option.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    this.handleOptionSelect(e, option);
+                }
+            });
+        });
+
+        document.addEventListener("click", this.onDocumentClick);
+        document.addEventListener("keydown", this.onKeyDown);
+    }
+
+    disconnectedCallback() {
+        document.removeEventListener("click", this.onDocumentClick);
+        document.removeEventListener("keydown", this.onKeyDown);
+    }
+
+    toggle() {
+        const isOpen = this.classList.contains("is-open");
+        if (isOpen) {
+            this.close();
+        } else {
+            this.open();
+        }
+    }
+
+    open() {
+        this.classList.add("is-open");
+        if (this.button) this.button.setAttribute("aria-expanded", "true");
+    }
+
+    close() {
+        this.classList.remove("is-open");
+        if (this.button) this.button.setAttribute("aria-expanded", "false");
+    }
+
+    onDocumentClick(e) {
+        if (!this.contains(e.target)) {
+            this.close();
+        }
+    }
+
+    onKeyDown(e) {
+        if (e.key === "Escape" && this.classList.contains("is-open")) {
+            this.close();
+            if (this.button) this.button.focus();
+        }
+    }
+
+    handleOptionSelect(e, option) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const radio = option.querySelector('input[type="radio"]');
+        if (!radio) return;
+
+        const wasActive = option.classList.contains("is-active");
+
+        // Update active classes and aria-checked
+        this.options.forEach((opt) => {
+            opt.classList.remove("is-active");
+            opt.setAttribute("aria-checked", "false");
+            const r = opt.querySelector('input[type="radio"]');
+            if (r) r.checked = false;
+        });
+
+        option.classList.add("is-active");
+        option.setAttribute("aria-checked", "true");
+        radio.checked = true;
+
+        if (this.button) {
+            this.close();
+        }
+
+        if (wasActive) return;
+
+        // Preserve existing non-sort filters (joined with &) or use ?sort_by if no filter is active
+        const params = new URLSearchParams();
+
+        // 1. Collect non-sort query params from current URL
+        const currentUrlParams = new URLSearchParams(window.location.search);
+        for (const [key, val] of currentUrlParams.entries()) {
+            if (key !== "sort_by" && key !== "section_id" && key !== "page") {
+                params.append(key, val);
+            }
+        }
+
+        // 2. Also collect any active filters from the page forms
+        const isMobile = Boolean(this.closest("#FacetFiltersFormMobile"));
+        const sortFilterForms = document.querySelectorAll("facet-filters-form form");
+        sortFilterForms.forEach((form) => {
+            if (!isMobile) {
+                if (
+                    form.id === "FacetSortForm" ||
+                    form.id === "FacetFiltersForm" ||
+                    form.id === "FacetSortDrawerForm"
+                ) {
+                    const fd = new FormData(form);
+                    for (const [k, v] of fd.entries()) {
+                        if (k !== "sort_by" && k !== "section_id" && v) {
+                            if (!params.getAll(k).includes(v)) {
+                                params.append(k, v);
+                            }
+                        }
+                    }
+                }
+            } else if (form.id === "FacetFiltersFormMobile") {
+                const fd = new FormData(form);
+                for (const [k, v] of fd.entries()) {
+                    if (k !== "sort_by" && k !== "section_id" && v) {
+                        if (!params.getAll(k).includes(v)) {
+                            params.append(k, v);
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. Set the sort_by parameter
+        params.set("sort_by", radio.value);
+
+        const searchParams = params.toString();
+        const facetFiltersForm =
+            this.closest("facet-filters-form") ||
+            document.querySelector("facet-filters-form");
+        const FacetFiltersFormClass =
+            window.FacetFiltersForm ||
+            customElements.get("facet-filters-form");
+
+        if (
+            facetFiltersForm &&
+            typeof facetFiltersForm.onSubmitForm === "function"
+        ) {
+            facetFiltersForm.onSubmitForm(searchParams, e);
+        } else if (
+            FacetFiltersFormClass &&
+            typeof FacetFiltersFormClass.renderPage === "function"
+        ) {
+            FacetFiltersFormClass.renderPage(searchParams, e);
+        } else {
+            window.location.search = `?${searchParams}`;
+        }
+    }
+}
+
+if (!customElements.get("lynq-sort-by")) {
+    customElements.define("lynq-sort-by", LynqSortBy);
+}
