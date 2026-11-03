@@ -3737,6 +3737,7 @@ details-disclosure > details {
 .dev_Zeal-slide-arrow {
     width: 20px !important;
     height: 20px !important;
+    opacity: 1 !important;
 }
 
 .dev_Zeal-slide-counter {
@@ -3749,17 +3750,30 @@ button.dev_Zeal-slide-arrow.dev_Zeal-prev {
 }
 
 .product-card-wrapper .card__inner .card__media {
-    z-index: 2;
+    z-index: 2 !important;
 }
 
 button.dev_Zeal-slide-arrow.dev_Zeal-next {
     left: auto !important;
     top: 50% !important;
 }
-
+.product-card-wrapper 
+.card__inner.color-scheme-2.gradient.ratio {
+    z-index: 22;
+}
 
 @media (hover: none) {
     .dev_Zeal-slide-arrow {
         opacity: 1;
     }
+}
+
+aside#main-collection-filters {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 0 10px;
+    position: sticky;
+    top: 47px;
+    z-index: 111;
+    background: white;
 }
