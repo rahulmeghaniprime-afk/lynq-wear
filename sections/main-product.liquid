@@ -74,8 +74,8 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
-    <div class="page-width">
-      <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+    <div class="site_row_full">
+      <div class="product product_layout_1 product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {% render 'product-media-gallery', variant_images: variant_images %}
         </div>
@@ -491,7 +491,12 @@
                     block: block,
                     product_form_id: product_form_id
                   %}
-                {%- when 'buy_buttons' -%}
+                    {%- when 'product_info_tabs' -%}
+  {% render 'product-info-tabs',
+    product: product,
+    section: section
+  %}
+                {%- when 'buy_buttons' -%}~
                   {%- render 'buy-buttons',
                     block: block,
                     product: product,
@@ -537,6 +542,11 @@
                       </p>
                     </div>
                   {%- endif -%}
+
+                 
+
+
+
                 {%- when 'complementary' -%}
                   <product-recommendations
                     class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
@@ -943,6 +953,11 @@
         }
       ]
     },
+    {
+  "type": "product_info_tabs",
+  "name": "Product Info Tabs",
+  "limit": 1
+},
     {
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",

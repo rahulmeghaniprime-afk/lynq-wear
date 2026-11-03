@@ -3767,7 +3767,7 @@ button.dev_Zeal-slide-arrow.dev_Zeal-next {
         opacity: 1;
     }
 }
-
+/* product page  */
 aside#main-collection-filters {
     width: 100% !important;
     max-width: 100%;
@@ -3776,4 +3776,30 @@ aside#main-collection-filters {
     top: 47px;
     z-index: 111;
     background: white;
+}
+
+.site_row_full {
+    width: 100%;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.product_layout_1  .product__title h1 {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.product_layout_1  .product__info-container .price--on-sale .price-item--regular {
+    font-size: 20px;
+}
+
+.product_layout_1 .product-form__input.product-form__input--pill label {
+    border-radius: 0px !important;
+    font-size: 13px !important;
+    padding: 6px  10px !important;
+    font-size: 12px !important;
+}
+.product_layout_1 
+.product-form__buttons {
+    max-width: 100%;
 }
