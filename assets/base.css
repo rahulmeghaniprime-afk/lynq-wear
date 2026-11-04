@@ -3659,17 +3659,16 @@ details-disclosure > details {
 }
 
 .dev_Zeal-card-slides {
+    display: flex;
     position: relative;
     width: 100%;
+    transition: transform 0.35s ease;
+    will-change: transform;
 }
 
 .dev_Zeal-card-slide {
-    display: none;
+    flex: 0 0 100%;
     width: 100%;
-}
-
-.dev_Zeal-card-slide.is-active {
-    display: block;
 }
 
 .dev_Zeal-slide-link {
@@ -3765,6 +3764,11 @@ button.dev_Zeal-slide-arrow.dev_Zeal-next {
 @media (hover: none) {
     .dev_Zeal-slide-arrow {
         opacity: 1;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .dev_Zeal-card-slides {
+        transition-duration: 0.01ms;
     }
 }
 /* product page  */

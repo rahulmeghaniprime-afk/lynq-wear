@@ -151,6 +151,9 @@ customElements.define("product-card", ProductCard);
             const slides = [...slider.querySelectorAll(".dev_Zeal-card-slide")];
             if (slides.length <= 1) return;
 
+            const track = slider.querySelector(".dev_Zeal-card-slides");
+            if (!track) return;
+
             slider.dataset.initialized = "true";
 
             const prev = slider.querySelector(".dev_Zeal-prev");
@@ -167,6 +170,8 @@ customElements.define("product-card", ProductCard);
                 slides.forEach((slide, i) => {
                     slide.classList.toggle("is-active", i === index);
                 });
+
+                track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
 
                 if (current) current.textContent = index + 1;
             }

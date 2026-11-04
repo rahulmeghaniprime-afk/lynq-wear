@@ -155,6 +155,7 @@ shopify-account::part(signed-out-avatar){display: none;}
 .getintouch_info>*{font-size: 14px;color: rgb(var(--color-foreground));}
 .mobile_nav_drawer_links .mobile_nav_tabr{height: 32px;position: absolute;--header-heading-color:#000000;right: 32px;}
 .mobile_nav_drawer_links .mobile_nav_tabr .mobile_nav span{width: 21px;}
+.card-wrapper .media>*:not(.zoom):not(.deferred-media__poster-button),.card-wrapper .media model-viewer{display: flex;}
 
 
 
