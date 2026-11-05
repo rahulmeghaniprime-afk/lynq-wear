@@ -119,6 +119,9 @@
     },
     "featured_collection_GYgeNX": {
       "type": "featured-collection",
+      "custom_css": [
+        ".collection__title.title-wrapper{max-width: 100%;}"
+      ],
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "frontpage",
