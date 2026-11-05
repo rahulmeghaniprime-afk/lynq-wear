@@ -120,7 +120,7 @@
     "featured_collection_GYgeNX": {
       "type": "featured-collection",
       "custom_css": [
-        ".collection__title.title-wrapper{max-width: 100%;}"
+        ".collection__title.title-wrapper {max-width: 100%;}"
       ],
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
@@ -144,7 +144,7 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
