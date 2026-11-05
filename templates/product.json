@@ -123,8 +123,8 @@
       "settings": {
         "collection": "frontpage",
         "products_to_show": 4,
-        "title": "Recommend Product",
-        "heading_size": "h1",
+        "title": "Recommend Products",
+        "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
