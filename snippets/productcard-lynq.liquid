@@ -8,7 +8,7 @@
       {% endif %}
       <div class="product-size-swatch-wrapper">
         <div class="wrapper">
-          <ul class="product-card__sizes">
+          <ul class="product-card__sizes"> 
             {% for option in product.options_with_values %}
               {% if option.name == 'Size' %}
                 {% for value in option.values %}

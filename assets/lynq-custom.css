@@ -189,7 +189,7 @@ shopify-account::part(signed-out-avatar){display: none;}
     .only_collection_girds .col_grid .img-fluid,
     .only_collection_girds .col_grid,
     .only_collection_girds .col_grid_wrapper{position: static;height: auto;}
-    .only_collection_girds .col_grid_wrapper{position: relative;}
+    .only_collection_girds .col_grid_wrapper{position: relative;} 
     .only_collection_girds .collection_title{position: absolute;bottom: 0;left: 0;}
     .image_banner .col_grid .img-fluid{position: static;}
     .image_banner .col_grid{position: static;display: block;}
