@@ -100,7 +100,7 @@
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_SHIRTS_0604cfc1-2806-4e52-b21b-71f578bf97ea.webp",
             "mobile_image": "shopify://shop_images/MOB-_GRID-SHIRTS.webp",
-            "url": "",
+            "url": "shopify://collections/shirts",
             "collection_label": "SHIRTS"
           }
         },
@@ -109,7 +109,7 @@
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_POLO_ebef04e2-4d76-42c3-bb7a-d75c8da8f39c.webp",
             "mobile_image": "shopify://shop_images/MOB-GRID-POLOS.webp",
-            "url": "",
+            "url": "shopify://collections/polos",
             "collection_label": "POLOS"
           }
         },
@@ -118,7 +118,7 @@
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_TROUERS_f5b5a569-4767-4074-bfda-8667307decbc.webp",
             "mobile_image": "shopify://shop_images/MOB-_GRID-TROUSERS.webp",
-            "url": "",
+            "url": "shopify://collections/frontpage",
             "collection_label": "TROUSERS"
           }
         },
@@ -127,7 +127,7 @@
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_JACKET_b2f79c1e-cdce-40a2-b8fe-ed39f99e396d.webp",
             "mobile_image": "shopify://shop_images/MOB-GRID-jackets.webp",
-            "url": "",
+            "url": "shopify://collections/jackets",
             "collection_label": "JACKETS"
           }
         },
@@ -136,7 +136,7 @@
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_TSHIRT.webp",
             "mobile_image": "shopify://shop_images/MOB-_GRID-t-SHIRTS.webp",
-            "url": "",
+            "url": "shopify://collections/t-shirts",
             "collection_label": "T-SHIRTS"
           }
         },
@@ -145,7 +145,7 @@
           "settings": {
             "image": "shopify://shop_images/DESKTOP_-_WEB_-_DENIM_b7277e3d-4d4a-48d2-b833-9f195d7ce86f.webp",
             "mobile_image": "shopify://shop_images/MOB-_GRID-JEANS.webp",
-            "url": "",
+            "url": "shopify://collections/jeans",
             "collection_label": "JEANS"
           }
         }
